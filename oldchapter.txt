@@ -1,0 +1,7 @@
+			<div class="row">
+				<h1 class="{{IsEditable}}" id="chaptertitle" align="center" style="border-bottom:0px solid;color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;"><strong>{{this.chaptertitle}}</strong></h1>
+			</div>
+			<div class="row"> 
+			<div class="panel panel-default white-panel" style="background:#fff;width=1250ch;height:100ch;padding:5px;font-size:21px;font-weight:normal;" id="chaptermess" data-type="textarea">{{this.message}}
+			</div>
+			</div>

@@ -1,0 +1,26 @@
+bookfollow collection enthält feld mit ungelesenen kapiteln
+einfache abfrage ob ein kapitel in diesem array enthalten ist
+damit ist in der kapitelübersicht dies sichtbar
+notification einbeziehen
+
+--------------------------------------------------------------------
+account erstellen für copyright freie bücher und diese jeweils posten lassen um content zu haben
+
+für jedes kapitel eine optionale authoren notiz einbauen, unter dem buchcover einfügen (?)
+
+admin panel sowie zugang erstellen
+
+project butterfly: user kannn ein buch starten und es der öffentlichkeit anbieten. jeder kann ein kapitel ergänzen. dabei kann es mehrere des gleiche kapitels geben, so entstehen verschiedene wege in der story (wie einige spiele mehrere enden haben, siehe heavy rain etc.)
+-------------------------------------------------------------------------------------------------
+prompts: jeder user kann einen "auftrag" erstellen, wo eine idee gepostet wird. Andere user können dann ein buch mit dieser idee schreiben. prompt hauptseite kann sortiert werden, standard auf neueste.
+
+linear-gradient(#107896,#109693) background farbe gradient machen. #109693
+http://www.colorhexa.com/107896
+
+-------------------------------------
+contest einführen
+vlt in verbindung mit prompts, vorgegebenes thema, sieger bekommt abzeichen für das abgegebene buch welches auf der buchseite angezeigt wird.
+evtl kapitel anzahl limitierung um verschieden große contests zu haben.
+
+-------------------------------------------------------------------------
+dashboard so aufbauen, dass die bücher in einer liste angezeigt werden. enthält 2 buttons um diese verändern oder zu löschen. verändern ruft eine neue seite auf: /dashboard/books/_id. vorm rendern gucken ob das buch einem gehört. dort kann das bild, der titel, summary und genre verändert werden.

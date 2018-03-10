@@ -1,0 +1,58 @@
+<template name="dashboard">
+  <div class="tweetfeed-container-nomargin" >
+    <div class="" style="padding-top:10px;">
+      <div class="">
+        
+
+			<div class="col-sm-3"> 
+
+			</div>
+
+			
+			
+			<div class="col-sm-6">
+				<ul class="nav nav-tabs" style="background-color:transparent;">
+				  <li class="nav-item">
+					<a class="nav-link active" href="/dashboard" style="background-color:#f2f3f4!important;color:#107896!important;">Profile</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="/dashboard/books" style="background-color:transparent!important;color:#f2f3f4!important;">Books</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#" style="background-color:transparent!important;color:#f2f3f4!important;">Notifications</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link disabled" href="#" style="background-color:transparent!important;color:#f2f3f4!important;">Placeholder</a>
+				  </li>
+				</ul>
+			<div class="panel panel-default " style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="profilesettings" data-type="textarea">
+				<textarea class="form-control" id="username" placeholder="{{currentUser.username}}" rows="1" style="color:#000;display:inline"></textarea>
+				<textarea class="form-control" id="email" placeholder="email@provide.com" rows="1" style="color:#000;display:inline"></textarea>
+				<textarea class="form-control" id="password" placeholder="" rows="1" style="color:#000;display:inline"></textarea>
+				<div style="text-align: center;"><button class="btn btn-info btn-tweetbox " id="submitbook" type="button" style="color:#f2f3f4;margin-left: 0px;margin-top: 9px;z-index:9999999;background-color:#107896;" align="center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				<strong>Save Changes</strong></button></div>
+			</div>
+				
+			</div>
+			
+			<div class="col-sm-3" >
+				<div class="panel panel-default " style="display:inline;" id="livefeed"> 
+		
+					<ul class="list-group" style="max-height:300px;overflow-y:auto;background-color:#ffffff;border-radius:2px;">
+			
+					<a href="" class="list-group-item">{{hasNotification}}</a>
+
+						{{#each newComments}}
+						<a href="/book/{{this.bookid}}/chapter/{{this._id}}" class="list-group-item" style="background-color:{{ listcolor @index}}"><h4 style="margin-bottom:10px;"><strong>{{this.chaptertitle}}</strong> has <strong>{{this.newcomments}}</strong> new comments</h4></a>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+        
+      </div>
+    </div>
+  </div>
+
+</template>
+
+

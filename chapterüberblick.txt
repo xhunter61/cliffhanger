@@ -1,0 +1,62 @@
+			<div class="panel-group" style="overflow-y:auto;max-height:100ch">
+			<div class="panel panel-default">
+				<div class="panel-heading" style="background-color:#f2f3f4;color:#f2f3f4">
+					<h4 class="panel-title nohoverlink">
+						<a data-toggle="collapse" href="#collapse1" class="nohoverlink"><h4 style="margin-left:15px;margin-bottom:23px;"><strong>{{this.booktitle}}</strong></h4></a>
+					</h4>
+				</div>
+		<div id="collapse1" class="panel-collapse collapse">
+	
+			<div class="panel-body">
+			<img src="{{this.cover}}" class="img-responsive" alt="Cinque Terre" width="157" height="240">
+			<h4 style="margin-left:0px;margin-bottom:0px;"><strong><i><label>by</label> <a href="/profile/{{this.user}}"><label style="cursor:pointer"> {{this.user}} </label></a></i></strong></h4>
+			{{#if hasRating}}
+			{{> rating value=this.rating disabled=true }}
+			{{else}}
+			{{> rating value=this.rating disabled=false }}
+			{{/if}}
+			
+			
+			{{#if isButterfly}}
+			
+			<h4 style="margin-left:0px;margin-bottom:0px;"><strong><i><label>chapter written by</label> <a href="/profile/{{userName}}"><label style="cursor:pointer"> {{userName}} </label></a></i></strong></h4>
+			
+			{{/if}}
+
+			</div>
+			
+			
+			
+			
+			</div>
+			</div>
+			</div>
+
+
+
+////altes chapter buchüberblick div
+
+
+
+			<div class="row">
+			<h4 style="margin-left:15px;margin-bottom:23px;"><strong>{{this.booktitle}}</strong></h4>
+			</div>
+			<img src="{{this.cover}}" class="img-responsive" alt="Cinque Terre" width="157" height="240">
+			<h4 style="margin-left:0px;margin-bottom:0px;"><strong><i><label>by</label> <a href="/profile/{{this.user}}"><label style="cursor:pointer"> {{this.user}} </label></a></i></strong></h4>
+			{{#if hasRating}}
+			{{> rating value=this.rating disabled=true }}
+			{{else}}
+			{{> rating value=this.rating disabled=false }}
+			{{/if}}
+			
+			
+			{{#if isButterfly}}
+			
+			<h4 style="margin-left:0px;margin-bottom:0px;"><strong><i><label>chapter written by</label> <a href="/profile/{{userName}}"><label style="cursor:pointer"> {{userName}} </label></a></i></strong></h4>
+			
+			{{/if}}
+
+
+
+
+

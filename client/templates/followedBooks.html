@@ -1,0 +1,41 @@
+
+<template name="followedBooks">
+  <div class="tweetfeed-container-nomargin">
+    <div class="" style="padding-top:10px;">
+      <div class="">
+        {{#if currentUser}}
+        <!-- Text box for tweet content -->
+		<div class="container">
+        {{#each followedBookEntity}}
+            <div class="col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 250px;">
+			
+			
+			
+			<div class="card bg-dark text-white " style="width:157px;height:240px;">
+			  <img class="card-img" src="{{getBookCover this.following}}" alt="Card image" width="157" height="240">
+			  <a href="/book/{{this.following}}/chapter/{{getFirstChapter this.following}}" style="text-decoration:none;">
+			  <div class="cn">
+				<div class="inner">
+					<a href="/book/{{this.following}}/chapter/{{getFirstChapter this.following}}" style="margin:15px;" title="Newest chapter"><i class="fa fa-book fa-3x" aria-hidden="true" style="color:#107896;"></i></a>
+					
+				</div>
+			</div>
+			</a>
+			<a href="/book/{{this.following}}" style="text-decoration:none;">
+			  <div class="card-img-overlay card-overlayed" style="background-color:rgba(0,0,0,0.5);" title="{{this.booktitle}}">
+				<h4 class="card-title "><strong>{{getBookEntity this.following}}</strong></h4>
+				
+			  </div>
+			  </a>
+			  
+			</div>
+			
+			
+			</div>
+        {{/each}}
+		</div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

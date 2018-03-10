@@ -1,0 +1,61 @@
+"meteor mongo" in cmd öffnet mongodb ansicht
+db."tabelle".find() zeigt tabellen inhalt an
+"show tables" zeigt alle tabellen an
+
+
+followUsers.html empfohlene user
+
+        <div class="recommend-users">
+          <h5>Who to follow:</h5>
+          {{#each recommendedUsers}}
+            <p><button type="button" class="btn btn-default" id="followRec">Follow @{{this.username}}</button></p>
+          {{/each}}
+        </div>
+
+
+
+<template name="tweetFeed">
+  <div class="tweetfeed-container">
+    <div class="panel panel-default tweetfeed">
+      <div class="panel-body">
+        {{#if currentUser}}
+        <!-- Text box for tweet content -->
+        {{#each bookEntity}}
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">@{{this.user}}
+                <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                 {{this.timestamp}}
+               </h3>
+            </div>
+            <div class="panel-body">
+              <pre>{{this.booktitle}}</pre>
+            </div>
+          </div>
+        {{/each}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
+
+
+
+
+    <label for="exampleFormControlSelect2">Genre (select multiple with shift)</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>Action</option>
+      <option>Adventure</option>
+	  <option>Comedy</option>
+	  <option>Drama</option>
+	  <option>Diary</option>
+	  <option>Fantasy</option>
+	  <option>History</option>
+	  <option>Horror</option>
+	  <option>Mystery</option>
+	  <option>Romance</option>
+	  <option>Science fiction</option>
+    </select>

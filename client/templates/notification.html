@@ -1,0 +1,52 @@
+<template name="notification">
+  {{#if currentUser}}
+  <div class="follow-container">
+    
+      <div class="panel-body" style="padding:0px;margin-top:8px">
+        <!-- Input box for user to follow -->
+
+          <button type="submit" class="btn btn-default" style="border-width:0px;background-color:#f2f3f4;margin-right:5px;outline:none;margin-bottom:0px;margin-top:0px;" id="togglenotifybox">
+		  <span class="fa-stack ">
+			<i class="fa fa-bell-o fa-stack-2x" aria-hidden="true" style="color:#107896;"></i>
+			{{{hasNotificationIcon}}}
+		  </span>
+		  </button>
+
+
+		
+		<div class="panel panel-default notify-container" style="display:none;position:absolute;margin-top:10px;min-width:250px;left:-100%;top:100%;" id="notifyarea"> 
+		
+		<ul class="list-group" style="max-height:300px;overflow-y:auto;">
+			
+				<a href="" class="list-group-item">{{hasNotification}}</a>
+
+			{{#each getNewBookChapters}}
+			<a href="/book/{{this.following}}" class="list-group-item"><i class="fa fa-book" aria-hidden="true"></i> A new Chapter for {{getBookEntity this.following}} has been released!</a>
+			{{/each}}
+		</ul>
+		</div>
+       
+
+
+        <!-- List of people to follow -->
+
+      </div>
+    
+  </div>
+    <script type="text/javascript">
+  $(document).ready(function() {
+		$("#togglenotifybox").click(function(){
+		var div= document.getElementById('notifyarea');
+		if(div.style.display=='inline-block'){
+			div.style.display='none';
+		}else{
+			div.style.display='inline-block';
+		}
+		console.log("CLick")
+		});
+		});
+		
+		$(".notifyarea").dropdown({ "autoinit" : ".select" });
+	</script>	
+  {{/if}}
+</template>

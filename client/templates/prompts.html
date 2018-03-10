@@ -1,0 +1,48 @@
+
+<template name="prompts">
+  <div class="tweetfeed-container-nomargin" >
+    <div class="" style="padding-top:10px;">
+      <div class="">
+        
+
+			<div class="col-sm-3"> 
+				<div class="panel panel-default " style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+					Prompts created by other user
+				</div>
+			</div>
+
+			
+			
+			<div class="col-sm-6">
+			{{#each getPrompts}}
+			<a href="/prompt/{{this._id}}" style="text-decoration:none;">
+				<div class="panel panel-default promptshadow" style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+					{{this.summary}}
+					<br>
+					<label style="float:left;margin-top: 8px;">{{this.genre}}</label>
+					<div style="text-align:right">
+					<label style="">{{getTime this.timestamp}} ago by {{this.user}}</label></div>
+				</div>
+			</a>
+			{{/each}}
+			</div>
+			
+			<div class="col-sm-3" >
+			<div class="panel panel-default " style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+				
+				<div class="form-group" id="divgenre" style="display:inline">
+					{{#Multiselect name='genreselect' options=myOptions selected=selectedOptions }}
+					<option value="{{ _id }}" {{ attrs }}>{{ caption }}</option>
+					{{/Multiselect}}
+				</div>
+				<textarea class="form-control" id="promptsummary" placeholder="Prompt" rows="5" style="color:#000;display:inline"></textarea>
+				<div style="text-align: center;"><button class="btn btn-info btn-tweetbox " id="submitprompt" type="button" style="color:#f2f3f4;margin-left: 0px;margin-top: 9px;background-color:#107896;" align="center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+			<strong>Create a prompt</strong></button></div>
+			</div>
+			</div>
+        
+      </div>
+    </div>
+  </div>
+
+</template>

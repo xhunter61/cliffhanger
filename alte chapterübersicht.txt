@@ -1,0 +1,47 @@
+			{{#if Template.subscriptionsReady}}
+			{{#transition in="fadeIn" out="bounceOut"}}
+			{{#each bookChapters}}
+			<div class="row">
+			<div class="col-xs-1">
+			<h5 align="right">{{this.chapternumber}}.</h5>
+			</div>
+			<div class="col-xs-6">
+			<h5><a href="/book/{{#each bookEntity}}{{this._id}}{{/each}}/chapter/{{this._id}}" class="chapterlink" id="{{this_id}}">{{this.chaptertitle}}</a></h5>
+			</div>
+			
+			<div class="col-xs-1">
+			{{#if isMyBook}}
+			<button type="button" class="btn btn-danger" style="width:20px;height:20px;padding:2px;display:{{EditModeButton}};margin:0px;" id={{this._id}} data-toggle="tooltip" data-placement="right" title data-original-title="Delete chapter"><i class="fa fa-times fa-1" aria-hidden="true" style="color:#fff;vertical-align:middle;display:block"></i></button>
+			{{/if}}
+			
+			</div>
+			
+			<div class="col-xs-2 pull-right">
+			<label style="font-size:10px;" align="right">{{getTime this.timestamp}} ago</label>
+
+			
+			</div>
+
+			</div>
+			{{/each}}
+			{{/transition}}
+			{{/if}}
+
+
+material:
+
+			<div class="list-group">
+			{{#each bookChapters}}
+			  <a href="/book/{{#each bookEntity}}{{this._id}}{{/each}}/chapter/{{this._id}}" class="list-group-item list-group-item-action flex-column align-items-start active">
+				<div class="d-flex w-100 justify-content-between">
+				  <h5 class="mb-1">{{this.chapternumber}}.</h5>
+				  <small>{{getTime this.timestamp}} ago</small>
+				</div>
+				<p class="mb-1" style="color:#000000;">{{this.chaptertitle}}</p>
+				
+			  </a>
+			{{/each}}
+			</div>
+			
+			
+	

@@ -1,0 +1,44 @@
+
+<template name="discover">
+  <div class="tweetfeed-container-nomargin">
+    <div class="" style="padding-top:10px;">
+      <div class="">
+        
+        <!-- Text box for tweet content -->
+				<div class="col-sm-3"> 
+		<div class="panel panel-default " style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" data-type="textarea">
+		<strong><label> Filter </label></strong><br>
+		<div class="form-group" id="divgenre" style="display:inline">
+		{{#Multiselect name='filtergenre' options=myOptions selected=selectedOptions }}
+			<option value="{{ _id }}" {{ attrs }}>{{ caption }}</option>
+		{{/Multiselect}}
+		</div>
+		</div>
+		</div>
+		<div class="col-sm-6">
+        {{#each bookEntity getGenres}}
+          
+            <div class="col-sm-6 col-md-4 col-lg-3" style="height: 314px;">
+			<strong style="color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;" >{{this.booktitle}}</strong>
+			
+			<a href="" class="image" style="border:1px solid #f2f3f4;"><img src="{{this.cover}}" class="img-responsive" alt="Cinque Terre" width="157" height="240" style="height:100%;width:100%;"></a>
+			<div class="cn">
+				<div class="inner">
+					<a href="/book/{{this._id}}" style="margin:15px;"><i class="fa fa-list fa-3x" aria-hidden="true" style="margin-bottom:50px;color:#107896;"></i></a><br>
+					<a href="/book/{{this._id}}/chapter/{{getFirstChapter this._id}}" style="margin:15px;"><i class="fa fa-book fa-3x" aria-hidden="true" style="color:#107896;"></i></a>
+					
+				</div>
+			</div>
+			
+			</div>
+        
+        {{/each}}
+		</div>
+		<div class="col-sm-3"> 
+
+		</div>
+        
+      </div>
+    </div>
+  </div>
+</template>

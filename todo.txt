@@ -1,0 +1,3 @@
+prompt hauptseite erstellen, gesamte box leitet auf die überblick seite weiter. links die summary und genres etc angeben, in der mitte bücher die dazu gehören. rechts vlt der button um ein neues buch hinzuzufügen?
+
+prompts filterbar wie discover, d.h. das kopieren.

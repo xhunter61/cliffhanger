@@ -1,0 +1,34 @@
+ AdminConfig = {
+  name: 'My App',
+  collections: {
+    Tweets: {
+        tableColumns: [
+              {label: 'Title', name: 'chaptertitle'},
+	          {label: 'Content', name: 'message'},
+	          {label: 'User', name: 'user'}
+            ]},
+    Booklist:{
+    
+        tableColumns: [ 
+              {label: 'Title', name: 'booktitle'},
+	          {label: 'Chaptercount', name: 'chaptercount'},
+            {label: 'Viewercount', name: 'viewercount'},
+            {label: 'Rating', name: 'rating'},
+            {label: 'Butterfly', name: 'butterfly'},
+	          {label: 'User', name: 'user'}
+            ]},
+    Bookfollow:{
+    
+    tableColumns: [ 
+              {label: 'User', name: 'followername'},
+	          {label: 'following', name: 'following'},
+	          {label: 'Saw new chapter?', name: 'sawnewChapter'},
+              {label: 'Bookmark', name: 'bookmark'}
+            ]},
+      
+  },
+     userSchema: null,
+    userColumns:[
+         {label: 'User', name: 'username'}
+         ]
+};

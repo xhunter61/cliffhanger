@@ -1,0 +1,152 @@
+
+<template name="bookprofile">
+  <div class="tweetfeed-container-nomargin" >
+    <div class="" style="padding-top:10px;">
+      <div class="">
+        
+		{{#each bookEntity}}
+			<div class="col-sm- col-sm-3"> 
+			<div class="card" style="width: 100%;word-wrap: break-word;margin-bottom:20px;">
+			  <img class="card-img-top" src="{{this.cover}}" alt="Card image cap" width="446" height="612" style="width:100%">
+			  <div class="card-body" style="">
+			  {{#if isEditMode}}
+			  	<div class="form-group" id="booktitleeditdiv" style="margin-top:0px;color:rgba(0,0,0,1);margin-bottom:0px;padding-bottom:0px;">
+				<input type="text" id="booktitledit" class="form-control"  value="{{this.booktitle}}" style="font-size:18px;font-weight:bold;margin-bottom:1px;padding-bottom:7px;border-bottom:1px dotted rgba(255,255,255, 0.84);"></div>
+			  {{else}}
+			  	<div class="form-group" id="booktitleeditdiv" style="margin-top:0px;color:rgba(0,0,0,1);margin-bottom:0px;padding-bottom:0px;">
+				<input type="text" id="booktitledit" class="form-control"  value="{{this.booktitle}}" style="font-size:18px;font-weight:bold;margin-bottom:1px;padding-bottom:7px;pointer-events:none;border-bottom:1px dotted rgba(255,255,255, 0.84);resize:none;" disabled></div>
+				<!--<h4 class="card-title"><strong>{{this.booktitle}}</strong></h4>-->
+				{{/if}}
+				<p class="card-text">by <a href="/profile/{{this.user}}"><label style="cursor:pointer"> {{this.user}} </label></a></p>
+			  <p class="card-text">
+			{{#if hasRating}}
+			{{> rating value=this.rating disabled=true }}
+			{{else}}
+			{{> rating value=this.rating disabled=false }}
+			{{/if}}
+			  </p>
+			  </div>
+			  <ul class="list-group list-group-flush">
+			  {{#if isEditMode}}
+			  <div class="form-group" id="summaryeditdiv" style="margin-top:0px;color:rgba(0,0,0,1);margin-left:16px;">
+				<textarea id="summaryedit" class="form-control" rows="5"  value="{{this.summary}}" style="font-size:14px;font-weight:300;border-bottom:1px dotted rgba(255,255,255, 0.84);"></textarea></div>
+				{{else}}
+				<div class="form-group" id="summaryeditdiv" style="margin-top:0px;color:rgba(0,0,0,1);margin-left:16px;">
+				<textarea id="summaryedit" class="form-control" rows="5"   value="{{this.summary}}" style="font-size:14px;font-weight:300;border-bottom:1px dotted rgba(255,255,255, 0.84);resize:none;cursor:default;" disabled></textarea></div>
+				<!--<li class="list-group-item list-group-item-summary">{{this.summary}}</li>-->
+				{{/if}}
+			  </ul>
+			  <ul class="list-group list-group-flush" style="font-size:12px;">
+				<li class="list-group-item list-group-item-genre">{{this.genres}}</li>
+
+			  </ul>
+			  <div class="card-body">
+			{{#if isMyBook}} <button type="button" class="btn btn-default" id="editbook" style="margin:5px"><i class="fa fa-cog" aria-hidden="true"></i>
+			{{buttontext}}</button>
+			{{else}} <button type="button" class="{{isfollowing}}" id="follow" style="margin:5px">{{{followIcon}}} {{isfollowingText}}</button>
+			{{/if}}
+			  </div>
+			</div>
+			</div>
+			
+
+			
+			
+			
+			{{/each}}
+			
+			
+			<div class="col-sm-6">
+			<div class="panel panel-default " style="background:transparent;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+			{{#if isButterfly}}
+			
+			<!--<div class="panel-group" style="overflow-y:auto;max-height:100ch">
+			<div class="panel panel-default">
+			<div class="panel-heading" style="background-color:#107896;color:#f2f3f4">
+					<h4 class="panel-title nohoverlink">
+						<a data-toggle="collapse" href="#collapse1" class="nohoverlink"><i class="fa fa-comments" aria-hidden="true" style="color:#f2f3f4"></i> Book</a>
+					</h4>
+				</div>
+			<div id="collapse1" class="panel-collapse collapse">
+			
+			</div>
+			</div>
+			</div>-->
+			{{>tree butterid=butterID margin=15}}
+
+			
+
+			{{else}}
+
+			
+			{{#each bookChapters}}
+			<a href="/book/{{#each bookEntity}}{{this._id}}{{/each}}/chapter/{{this._id}}" style="text-decoration:none;">
+				<div class="panel panel-default promptshadow" style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;" id="booksummary" data-type="textarea">
+					{{this.chapternumber}}. {{this.chaptertitle}}
+					
+					<div style="float:right;text-align:right">
+					<label style="">{{getTime this.timestamp}} ago by {{this.user}}</label></div>
+				</div>
+			</a>		
+			{{/each}}
+			
+			
+
+
+			
+			
+			
+			
+			{{/if}}
+			</div>
+			</div>
+			<div class="col-sm-3" >
+			{{#if isButterfly}}
+			<div class="panel panel-default" style="background:#fff;width=1250ch;height:9ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+			<h4>This book has been created as a Butterfly book. 
+			<br>This means anyone can expand the story the way they want. Follow a certain path and change it if you dont like it!</h4>
+			</div>
+			{{/if}}
+			{{#each bookEntity}}
+			
+
+			<div class="card bg-dark text-white " style="width:157px;height:240px;">
+			  <img class="card-img" src="{{this.cover}}" alt="Card image" width="157" height="240">
+			  <a href="/book/{{this._id}}" style="text-decoration:none;">
+			  <div class="cn">
+				<div class="inner">
+					<a href="/book/{{this._id}}/chapter/" style="margin:15px;" title="Newest chapter"><i class="fa fa-book fa-3x" aria-hidden="true" style="color:#107896;"></i></a>
+					
+				</div>
+			</div>
+			</a>
+			<a href="/book/{{this._id}}" style="text-decoration:none;">
+			  <div class="card-img-overlay card-overlayed" style="background-color:rgba(0,0,0,0.5);" title="{{this.booktitle}}">
+				<h4 class="card-title ">{{this.booktitle}}</h4>
+				
+			  </div>
+			  </a>
+			  
+			</div>
+			
+			
+			
+			
+			{{/each}}
+			
+			
+			
+			
+			</div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+        
+    });
+</script>
+</template>

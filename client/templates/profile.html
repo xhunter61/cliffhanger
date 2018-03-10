@@ -1,0 +1,82 @@
+
+<template name="userprofile">
+
+  <div class="tweetfeed-container-nomargin" >
+    <div class="">
+      <div class="">
+	  <div class="col-sm-3"> 
+	  
+        {{#each userdata}}
+		
+			
+			
+			<div class="" align="center" style="border-bottom:1px solid #107896"><h3 style="color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;"><strong >{{username}}</strong></h3></div>
+			
+			
+	
+			<div class="panel panel-default" style="margin-left: 0px;padding-left: 20px;width:auto;">
+		<div class="row">
+		<table class="table">
+          <tr>
+            <td class="tableHeader">Books</td>
+            <td class="tableHeader">Chapters</td>
+            <td class="tableHeader">Follower</td>
+          </tr>
+          <tr>
+            <td class="tableContent">{{booklistcount}}</td>
+            <td class="tableContent">{{chaptercount}}</td>
+            <td class="tableContent">{{followers}}</td>
+          </tr>
+		  
+		  
+        </table>
+			</div>
+			
+			<div class="row">
+			{{username}} has published <strong>{{chaptercount}}</strong> chapters in <strong>{{booklistcount}}</strong> books.</div></div>
+		{{/each}}
+		</div>
+		
+		<div class="col-sm-6">
+		
+		<div class="" align="center" style="border-bottom:1px solid #f2f3f4"><h3 style="color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;"><strong> Books by {{username}}</strong></h3></div>
+			<div class=" panel panel-default" style="width:auto;background:transparent;">
+			
+			{{#each booklist}}
+            <div class="col-sm- col-md-3 col-lg-3 " style="margin-bottom:0px;padding:5px;height:175px;border-bottom:1px solid #f2f3f4">
+			<div style="color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;"><strong>{{this.booktitle}}</strong></div>
+			<div class="row">
+			<div class="col-xs-6">
+			
+			<a href="/book/{{this._id}}" class="image-small" style="border:1px solid #f2f3f4;"><img src="{{getBookCover this._id}}" class="img-responsive" alt="Cinque Terre" width="90" height="137.5796" style="block;width:100%;height:100%"></a>
+			
+			<div class="cn-small">
+				<div class="inner-small">
+					<a href="/book/{{this._id}}" style="margin:15px;"><i class="fa fa-list fa-2x" aria-hidden="true" style="margin-bottom:25px;color:#f2f3f4;"></i></a><br>
+					<a href="/book/{{this._id}}/chapter/{{getFirstChapter this._id}}" style="margin:15px;"><i class="fa fa-book fa-2x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
+					
+				</div>
+			</div>
+			
+			</div>
+			<div class="col-xs-3">
+			<div class="row" style="color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;">
+			<i class="fa fa-book" aria-hidden="true" style="margin-right:5px">  </i>{{this.chaptercount}}
+			</div>
+			<div class="row" style="color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;">
+			<i class="fa fa-eye" aria-hidden="true" style="margin-right:3px"> </i>  {{this.viewercount}}
+			</div>
+			</div>
+			</div>
+			</div>
+			{{/each}}
+			</div>
+			</div>
+			<div class="col-sm-3"> 
+			</div>
+        
+      </div>
+    </div>
+  </div>
+
+</template>

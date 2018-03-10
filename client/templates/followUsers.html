@@ -1,0 +1,38 @@
+<template name="followUsers">
+  {{#if currentUser}}
+  <div class="follow-container">
+    
+      <div class="panel-body" style="padding:0px;margin-top:0px">
+        <!-- Input box for user to follow -->
+        <form class="form-inline form-group" style="margin-top:10px;margin-bottom:0px;padding-bottom:5px;">
+          <input type="text" class="form-control" id="searchUser" placeholder="&#xf002; Search for a book" autocomplete="off" name="password" style="background-color:#f2f3f4;border-radius:4px;color:#107896;padding-left:10px;padding-right:10px;border:1px solid #107896;font-family: FontAwesome;background-image:-webkit-gradient(linear, left top, left bottom, from(#107896), to(#107896)), -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0)));;" size="30">
+          <!--<button type="submit" class="btn btn-info" style="color:#000;margin-bottom:0px;" id="searchbutton" ><i class="fa fa-search" aria-hidden="true" style="color:#107896;"></i></button>-->
+        </form>
+
+        <!-- Display box found through search-->
+        {{#if foundUsercount}}
+		
+		<div class="panel panel-default" style="display:block;position:absolute;min-width:250px;" id="searchresults"> 
+		
+		<ul class="list-group" style="max-height:300px;overflow-y:auto;padding-bottom:5px;">
+			
+			
+			{{#each foundUsers}}
+			<hr style="margin-top:0px;margin-bottom:0px;">
+			<a href="/book/{{this._id}}" class="list-group-item" style="padding-bottom:5px;"><div style=""><img src="{{this.cover}}" class="img-responsive" alt="Cinque Terre" width="33" height="50" style="margin-top:5px;float:left;vertical-align:middle;"><span style="float:middle;margin-left:5px;"> {{this.booktitle}}</span><br><span style="float:middle;margin-left:5px;">by {{this.user}}</span></div></a>
+			
+			{{/each}}
+		</ul>
+		</div>
+		
+
+       
+        {{/if}}
+
+        <!-- List of people to follow -->
+
+      </div>
+    
+  </div>
+  {{/if}}
+</template>

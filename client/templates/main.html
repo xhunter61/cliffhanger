@@ -1,0 +1,251 @@
+<head>  
+  <title>Cliffhanger - Tell your story!</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#f2f3f4; border:5px; border-bottom: 1px solid #107896">
+     
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/" style="color:#107896"><strong>Cliffhanger</strong></a>
+			{{> tweetBox}}
+        </div>
+		
+		   <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
+
+		
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ><a href="/feed" style=""><strong>Feed</strong></a></li>
+			<li><a href="/following" style=""><strong>Bookshelf</strong></a></li>
+            <li><a href="/discover" style=""><strong>Discover</strong></a></li>
+			<li><a href="/prompts" style=""><strong>Prompts</strong></a></li>
+            <li style="margin-right:30px;"><a href="#contact" style=""><strong>Contact</strong></a></li>
+			<!--<li class="tweetboxActive" style="position:relative;">{{#if currentUser}}{{> tweetBox}}{{/if}}</li>-->
+            
+          </ul>
+		  
+          <ul class="nav navbar-nav navbar-right">
+		  
+		  <li>{{> followUsers}}</li>
+		  <li>{{>notification}}</li>
+		  <li class="dropdown">
+		  {{# if currentUser}} 
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=""><strong>@{{currentUser.username}} </strong><span class="caret"></span></a>
+			  {{else}}
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=""><strong>Login/Register </strong><span class="caret"></span></a>
+			  {{/if}}
+              <ul class="dropdown-menu" style="background-color:#107896;">
+                {{> userManagement}}  
+              </ul>
+            </li>
+		  	
+            </ul>
+        </div><!--/.nav-collapse -->
+
+      
+    </nav> 
+
+
+  <div class="row" style="margin:0;">
+      
+
+    
+     
+
+  </div>
+  <a id="toggleBoxMobile" class="btn btn-fab hidden-lg btn-tweetbox" style="position:fixed;bottom:5px;right:5px;z-index:9999999;background-color:#f2f3f4;color:#107896" {{disableButton}}><i class="fa fa-pencil-square-o fa-lg material-icon" style="vertical-align:middle;margin-top:18px;margin-left:5px;color:#107896"></i><div class="ripple-container"></div></a>
+  
+  <div id="tweetbox-mobile" class="container-fluid" style="padding-left:0px;padding-right:0px;display:none;"><div class="panel panel-default tweetbox-mobile " style="z-index:9999998" >
+        <div class="panel-body" style="width:100%">
+        <!-- Text box for tweet content -->
+		<div style="float:right;display:inline" id="divclose-mobile" >
+            <button id="closebutton-mobile" style="border: none;background-color:#fff"><i class="fa fa-times fa-2x" style="color:#f44336" aria-hidden="true"></i></button>
+        </div>
+		<div class="checkbox" style="width:50%;">
+		<label style="color:#000"><input type="checkbox" id="newbookcheck-mobile" value="" ><span class="checkbox-material" style="margin-right:5px;"></span>New Book</label>
+		
+		</div>
+		 <div class="form-group" id= "booklist-mobile" style="display:inline">
+			<label for="sel1" style="color:#000">Select book:</label>
+			<select class="form-control" id="sel1-mobile" style="margin-bottom:15px">
+			{{#each bookEntity}}
+				<option>{{this.booktitle}}</option>
+			{{/each}}
+			</select>
+		</div>
+		<div class="togglebutton" style="float:right;display:none" id="divtogglebutton-mobile" >
+            <label id="butterlabel-mobile" style="color:rgba(0,0,0, 0.26);">
+                Butterfly
+              <input type="checkbox" id="togglebutton-mobile" style="margin-left:5px;" checked="false">
+			  
+			</label>
+        </div>
+
+		<div class="form-group" id="divtitle-mobile" style="display:none;">
+  <label style="color:#000">Title:</label>
+  <input type="text" id="booktitle-mobile" class="form-control" style="margin-bottom:15px">
+</div>
+<div class="form-group" id="divlink-mobile" style="display:none">
+  <label style="color:#000">Cover link:</label>
+  <input type="text" id="coverlink-mobile" class="form-control" style="margin-bottom:15px">
+</div>
+		<div class="form-group" id="divchaptertitle-mobile" style="display:inline">
+		<label style="color:#000">Chapter Title:</label>
+  <input type="text" id="chaptertitle-mobile" class="form-control" style="margin-bottom:15px">
+  </div>
+    <div class="form-group" id="divgenre-mobile" style="display:none">
+  {{#Multiselect name='myMultiselect' options=myOptions selected=selectedOptions }}
+    <option value="{{ _id }}" {{ attrs }}>{{ caption }}</option>
+  {{/Multiselect}}
+  </div>
+  <textarea class="form-control" id="summaryBook-mobile" placeholder="Summary" rows="5" style="color:#000;display:none"></textarea>
+        <textarea class="form-control" id="tweetText-mobile" placeholder="Tell your story" rows="20" style="color:#000"></textarea>
+
+        <!-- Character count & button -->
+        <div class="pull-left btnGroup">
+          <strong class="{{charClass}}">{{charCount}}</strong>
+          {{#if currentUser}}
+           
+          {{else}}
+        <button class="btn btn-info pull-right"  type="button" disabled>Please Log In</button>
+          {{/if}}
+        </div>
+
+      </div>
+  
+  </div></div>
+  
+  <script type="text/javascript">
+    		$('#newbookcheck-mobile').change(function() {
+		console.log("Checked")
+			if ($('#newbookcheck-mobile').is(':checked')) {
+			document.getElementById('divtitle-mobile').style.display='inline';
+			document.getElementById('divlink-mobile').style.display='inline';
+			document.getElementById('booklist-mobile').style.display='none';
+			//document.getElementById('divchaptertitle').style.display='none';
+			document.getElementById('divtogglebutton-mobile').style.display='inline';
+			document.getElementById('summaryBook-mobile').style.display='inline';
+			document.getElementById('divgenre-mobile').style.display='inline';
+			}else{
+			document.getElementById('divtitle-mobile').style.display='none';
+			document.getElementById('divlink-mobile').style.display='none';
+			document.getElementById('booklist-mobile').style.display='inline';
+			//document.getElementById('divchaptertitle').style.display='inline';
+			document.getElementById('divtogglebutton-mobile').style.display='none';
+			document.getElementById('booklist-mobile').style.display='inline';
+			document.getElementById('summaryBook-mobile').style.display='none';
+			document.getElementById('divgenre-mobile').style.display='none';
+			}
+		});
+  </script>
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+
+  $('.navbar-nav>li>a').on('click', function(){
+    $('.navbar-collapse').collapse('hide');
+});
+
+    $(document).click(function (event) {
+         var clickover = $(event.target);
+         var _opened = $(".navbar-collapse").hasClass("show");
+         if (_opened === true && !clickover.hasClass("navbar-toggler")) {
+             $(".navbar-toggler").click();
+         }
+     });
+  
+  $.material.init()
+  
+  		$("#closebutton-mobile").click(function(){
+		var div= document.getElementById('tweetbox');
+		$('#tweetbox-mobile').css('display','none');
+		});
+
+  
+  $(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});
+
+  $(".navbar-brand").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   
+});
+
+$('#togglebutton-mobile').prop('checked',false);
+
+		$("#toggleBoxMobile").click(function(){
+		var div= document.getElementById('tweetbox-mobile');
+		if(div.style.display=='inline'){
+			div.style.display='none';
+			
+		}else{
+			div.style.display='inline';
+			
+			console.log("showing tweetbox")
+		}
+		});
+
+  
+  }
+  );
+  
+
+  
+  
+  $(document).mouseup(function(e) {
+    var $container = $("#writebox");
+	var $writebutton=$("#toggleBox");
+    // if the target of the click isn't the container nor a descendant of the container
+	if(document.getElementById('tweetbox')!=null){
+    if (!$container.is(e.target) && $container.has(e.target).length === 0 && !$writebutton.is(e.target) && $writebutton.has(e.target).length===0) {
+        var div= document.getElementById('tweetbox');
+		div.style.display='none';
+		var shadowdiv= document.getElementById('shadow');
+		shadowdiv.style.display='none';
+		//console.log("click outside of div");
+    }
+	}
+	
+	
+	var $searchfield = $("#searchUser");
+	var $searchbutton=$("#searchbutton");
+	var $searchresultbox=$("#searchresults")
+    // if the target of the click isn't the container nor a descendant of the container
+	if(document.getElementById('searchresults')!=null){
+    if (!$searchfield.is(e.target) && $searchfield.has(e.target).length === 0 && !$searchbutton.is(e.target) && $searchbutton.has(e.target).length===0 && !$searchresultbox.is(e.target) && $searchresultbox.has(e.target).length===0) {
+        var div= document.getElementById('searchresults');
+		div.style.display='none';
+		//console.log("click outside of div");
+    }
+	}
+	
+	
+			$('#togglebutton-mobile').change(function() {
+			if ($('#togglebutton-mobile').is(':checked')) {
+				$('#butterlabel-mobile').css('color','#107896')
+				console.log("toggled");
+			}else{
+			$('#butterlabel-mobile').css('color','rgba(0,0,0, 0.26)')
+				console.log("not toggled");
+			}
+		});
+	
+	
+});
+		</script>				
+          
+</body>
+
+
+

@@ -1,0 +1,175 @@
+<template name="tweetBox">  
+
+<button class="btn btn-info btn-tweetbox button-center hidden-xs" id="toggleBox" type="button" style="color:#f2f3f4;align:center;margin-left: 0px;margin-top: 9px;z-index:9999999;background-color:#107896;" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+ <strong>Write!</strong></button>
+<div id="shadow" style="display:none;z-index: 40;width: 100vw;height: 100vh;background-color: rgba(0,0,0,0.2);position: absolute;"></div>
+  <div class="tweetbox-container panel-center" style="z-index:41" id="writebox">
+    <div class="panel panel-default tweetbox col-xs-6 tweetboxAnim1" id="tweetbox" style="display:none;margin-top:0px;position:absolute;box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.8);z-index:9999999;background-color:#f2f3f4;width:100%;overflow:auto;height:90vh">
+      <div class="panel-body" style="width:100%">
+        <!-- Text box for tweet content -->
+		<div class="checkbox">
+		<label style="color:#000;margin-left:5px;"><input type="checkbox" id="newbookcheck" value="" >  New Book</label>
+
+		</div>
+		 <div class="form-group" id= "booklist" style="display:inline">
+			<label for="sel1" style="color:#000">Select book:</label>
+			<select class="form-control" id="sel1" style="margin-bottom:15px">
+			{{#each bookEntity}}
+				<option>{{this.booktitle}}</option>
+			{{/each}}
+			</select>
+		</div>
+		
+		<div id="imageuploaderdiv" style="display:none">
+		<!--{{>uploadForm}}-->
+		</div>
+		
+		<div class="togglebutton" style="float:right;display:none" id="divtogglebutton" >
+              <label>
+                Butterfly
+                <input type="checkbox" id="togglebutton" checked="false">
+
+              </label>
+            </div>
+		
+		<div class="form-group" id="divtitle" style="display:none;">
+  <label style="color:#000">Title:</label>
+  <input type="text" id="booktitle" class="form-control" style="margin-bottom:15px">
+</div>
+<div class="form-group" id="divlink" style="display:none">
+  <label style="color:#000">Cover link:</label>
+  <input type="text" id="coverlink" class="form-control" style="margin-bottom:15px">
+</div>
+		<div class="form-group" id="divchaptertitle" style="display:inline">
+		<label style="color:#000">Chapter Title:</label>
+  <input type="text" id="chaptertitle" class="form-control" style="margin-bottom:15px">
+  </div>
+  <div class="form-group" id="divgenre" style="display:none">
+  {{#Multiselect name='myMultiselect' options=myOptions selected=selectedOptions }}
+    <option value="{{ _id }}" {{ attrs }}>{{ caption }}</option>
+  {{/Multiselect}}
+  </div>
+
+  
+  <textarea class="form-control" id="summaryBook" placeholder="Summary" rows="5" style="color:#000;display:none"></textarea>
+        <textarea class="form-control" id="tweetText" placeholder="Tell your story" rows="17" style="color:#000"></textarea>
+
+        <!-- Character count & button -->
+        <div class="pull-right btnGroup">
+          <strong class="{{charClass}}">{{charCount}}</strong>
+          {{#if currentUser}}
+            <button class="btn btn-info pull-right" id="tweetbutton" type="button" style="color:#000" {{disableButton}}>Tweet</button>
+          {{else}}
+        <button class="btn btn-info pull-right"  type="button" disabled>Please Log In</button>
+          {{/if}}
+        </div>
+		
+		<div class="btn-group">
+  <button class="btn dropdown-toggle" type="button" id="visibility" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Public</button>
+  <div class="dropdown-menu" aria-labelledby="buttonMenu1">
+    <a class="dropdown-item" href="#" id="publiclisting">Public</a>
+    <a class="dropdown-item" href="#" id="followerlisting">Follower</a>
+    <a class="dropdown-item" href="#" id="onlymelisting">Unlisted</a>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+		//$('#tweetText').wysihtml5({
+
+			//"font-styles":true,
+			//"color":true,
+			 //"fa":true
+
+		//});
+		$(document).ready(function() {
+		
+		$('#publiclisting').click(function(){
+		console.log("tetetetete");
+			$('#visibility').html("Public");
+		});
+		
+		$('#followerlisting').click(function(){
+		console.log("tetetetete");
+			$('#visibility').html("Follower only");
+		});
+		
+		$('#onlymelisting').click(function(){
+		console.log("tetetetete");
+			$('#visibility').html("Unlisted");
+		});
+		
+		$('#togglebutton').prop('checked',false);
+		//console.log($('#togglebutton-mobile').is(':checked'));
+		$('#togglebutton-mobile').prop('checked',false);
+		//console.log($('#togglebutton-mobile').is(':checked'));
+
+		
+		$('[name="myMultiselect"]').on('change', function(){
+		console.log("changed");
+    var selected = $(this).find("option:selected");
+    var arrSelected = [];
+    selected.each(function(){
+       arrSelected.push($(this).val());
+    });
+	console.log(arrSelected);
+});
+		
+		$.material.init();
+		
+		$("#toggleBox").click(function(){
+		var div= document.getElementById('tweetbox');
+		var shadowdiv= document.getElementById('shadow');
+		if(div.style.display=='inline'){
+			div.style.display='none';
+			shadowdiv.style.display='none'
+			$('#tweetbox').removeClass('tweetboxAnim2');
+		}else{
+			div.style.display='inline';
+			shadowdiv.style.display='block'
+			$('#tweetbox').addClass('tweetboxAnim2');
+			console.log("showing tweetbox")
+		}
+		});
+		});
+		
+		$('#newbookcheck').change(function() {
+			if ($('#newbookcheck').is(':checked')) {
+			document.getElementById('divtitle').style.display='inline';
+			document.getElementById('divlink').style.display='inline';
+			document.getElementById('divgenre').style.display='inline';
+			document.getElementById('imageuploaderdiv').style.display='inline';
+			document.getElementById('divtogglebutton').style.display='inline';
+			document.getElementById('booklist').style.display='none';
+			document.getElementById('summaryBook').style.display='inline';
+			//document.getElementById('divchaptertitle').style.display='none';
+			}else{
+			document.getElementById('divtitle').style.display='none';
+			document.getElementById('divlink').style.display='none';
+			document.getElementById('imageuploaderdiv').style.display='none';
+			document.getElementById('divtogglebutton').style.display='none';
+			document.getElementById('booklist').style.display='inline';
+			document.getElementById('divgenre').style.display='none';
+			document.getElementById('summaryBook').style.display='none';
+			//document.getElementById('divchaptertitle').style.display='inline';
+			}
+		});
+		
+		$('#togglebutton').change(function() {
+			if ($('#togglebutton').is(':checked')) {
+				console.log("toggled");
+			}else{
+				console.log("not toggled");
+			}
+		});
+		
+		$('#sel1').change(function() {
+		console.log($(this).val());
+		console.log($('#sel1').val());
+		});
+		$("#sel1").dropdown();
+  </script>
+
+</template>  

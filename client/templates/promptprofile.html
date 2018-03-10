@@ -1,0 +1,60 @@
+
+<template name="promptprofile">
+  <div class="tweetfeed-container-nomargin" >
+    <div class="" style="padding-top:10px;">
+      <div class="">
+        
+
+			<div class="col-sm-3"> 
+			{{#each getPrompt}}
+
+				<div class="panel panel-default " style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+					{{this.summary}}
+					<br>
+					<label style="float:left;margin-top: 8px;">{{this.genre}}</label>
+					<div style="text-align:right">
+					<label style="">{{getTime this.timestamp}} ago by {{this.user}}</label></div>
+				</div>
+
+			{{/each}}
+			</div>
+
+			
+			
+			<div class="col-sm-6">
+			{{#each bookEntity }}
+            <div class="col-sm-6 col-md-4 col-lg-3" style="height: 314px;">
+			<strong style="color:#f2f3f4;text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;" >{{this.booktitle}}</strong>
+			
+			<a href="" class="image" style="border:1px solid #f2f3f4;"><img src="{{this.cover}}" class="img-responsive" alt="Cinque Terre" width="157" height="240" style="height:100%;width:100%;"></a>
+			<div class="cn">
+				<div class="inner">
+					<a href="/book/{{this._id}}" style="margin:15px;"><i class="fa fa-list fa-3x" aria-hidden="true" style="margin-bottom:50px;color:#107896;"></i></a><br>
+					<a href="/book/{{this._id}}/chapter/{{getFirstChapter this._id}}" style="margin:15px;"><i class="fa fa-book fa-3x" aria-hidden="true" style="color:#107896;"></i></a>
+					
+				</div>
+			</div>
+			
+			</div>
+        
+        {{/each}}
+
+			</div>
+			
+			<div class="col-sm-3" >
+
+			<div class="panel panel-default " style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+				<textarea class="form-control" id="booktitleprompt" placeholder="Booktitle" rows="1" style="color:#000;display:inline"></textarea>
+				<textarea class="form-control" id="bookcover" placeholder="Coverlink" rows="1" style="color:#000;display:inline"></textarea>
+				<textarea class="form-control" id="chaptertitleprompt" placeholder="Chaptertitle" rows="1" style="color:#000;display:inline"></textarea>
+				<textarea class="form-control" id="chapter" placeholder="Prompt" rows="10" style="color:#000;display:inline"></textarea>
+				<div style="text-align: center;"><button class="btn btn-info btn-tweetbox " id="submitbook" type="button" style="color:#f2f3f4;margin-left: 0px;margin-top: 9px;z-index:9999999;background-color:#107896;" align="center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+			<strong>Write book</strong></button></div>
+			</div>
+			</div>
+        
+      </div>
+    </div>
+  </div>
+
+</template>

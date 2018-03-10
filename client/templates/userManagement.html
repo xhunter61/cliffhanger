@@ -1,0 +1,47 @@
+<template name="userManagement">
+
+
+                {{# if currentUser}}
+        <!-- Message for logged in user -->
+		<ul class="list-group" style="max-height:300px;overflow-y:auto;background-color:#107896;color:#f2f3f4;">
+			
+			<a href="/profile/{{getUser}}" class="list-group-item btn" id="profile" style="color:#f2f3f4;border-bottom:1px solid #f2f3f4;padding-bottom:5px;">My Profile</a>
+			{{#if isInRole 'admin'}}
+			<a href="/admin" class="list-group-item btn" id="profile" style="color:#f2f3f4;border-bottom:1px solid #f2f3f4;padding-bottom:5px;">Admin</a>
+			{{/if}}
+			<a href="/dashboard" class="list-group-item btn" id="profile" style="color:#f2f3f4;border-bottom:1px solid #f2f3f4;padding-bottom:5px;">Dashboard</a>
+			<a href="" class="list-group-item btn" id="logout" style="color:#f2f3f4;">Logout</a>
+			
+		</ul>
+
+{{else}}
+
+   <div class="user-container" style="background-color:f2f3f4;">
+    <div class="panel panel-default col-md-2" style="background-color:#f2f3f4;width:auto;padding-right:15px;margin-right:25px;">
+      <div class="panel-body" style="background-color:f2f3f4;">
+        <!-- Log in module -->
+        <h4>Already have an account?</h4>
+        <div class="form-group">
+          <input class="form-control input" id="login-username" placeholder="Username" style="width:100%;">
+          <input class="form-control input" id="login-password" placeholder="Password" type="password" style="width:100%;">
+        </div>
+
+        <button type="button" class="btn btn-info  login" id="login" style="background-color:#107896;color:#f2f3f4;">Log in</button>
+
+
+        <!-- Sign up module -->
+        <h4>New User?</h4>
+        <div class="form-group" style="width:209px;">
+          <input class="form-control input" id="signup-username" placeholder="Username" style="width:100%;">
+          <input class="form-control input" id="signup-fullname" placeholder="Full Name (Optional)" style="width:100%;">
+          <input class="form-control input" id="signup-password" placeholder="Password" type="password" style="width:100%;">
+        </div>
+
+        <button type="button" class="btn btn-info " id="signup" style="background-color:#107896;color:#f2f3f4;">Sign up</button>
+        
+
+      </div>
+    </div>
+  </div>
+{{/if}}
+</template> 
