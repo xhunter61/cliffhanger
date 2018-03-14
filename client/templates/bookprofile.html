@@ -101,42 +101,11 @@
 			</div>
 			</div>
 			<div class="col-sm-3" >
-			{{#if isButterfly}}
-			<div class="panel panel-default" style="background:#fff;width=1250ch;height:9ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
-			<h4>This book has been created as a Butterfly book. 
-			<br>This means anyone can expand the story the way they want. Follow a certain path and change it if you dont like it!</h4>
+			<div id="editor" >
+			  <p>Hello World!</p>
+			  <p>Some initial <strong>bold</strong> text</p>
+			  <p><br></p>
 			</div>
-			{{/if}}
-			{{#each bookEntity}}
-			
-
-			<div class="card bg-dark text-white " style="width:157px;height:240px;">
-			  <img class="card-img" src="{{this.cover}}" alt="Card image" width="157" height="240">
-			  <a href="/book/{{this._id}}" style="text-decoration:none;">
-			  <div class="cn">
-				<div class="inner">
-					<a href="/book/{{this._id}}/chapter/" style="margin:15px;" title="Newest chapter"><i class="fa fa-book fa-3x" aria-hidden="true" style="color:#107896;"></i></a>
-					
-				</div>
-			</div>
-			</a>
-			<a href="/book/{{this._id}}" style="text-decoration:none;">
-			  <div class="card-img-overlay card-overlayed" style="background-color:rgba(0,0,0,0.5);" title="{{this.booktitle}}">
-				<h4 class="card-title ">{{this.booktitle}}</h4>
-				
-			  </div>
-			  </a>
-			  
-			</div>
-			
-			
-			
-			
-			{{/each}}
-			
-			
-			
-			
 			</div>
         
       </div>
@@ -146,6 +115,7 @@
   <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
+
         
     });
 </script>

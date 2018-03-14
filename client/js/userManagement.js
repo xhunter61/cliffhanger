@@ -142,7 +142,13 @@ Router.route('/book/:_id', function () {
 Router.route('/prompt/:_id', function () {
     var params = this.params; // { _id: "5" }
     var id = params._id; // "5"
-    this.render('promptprofile');
+    this.wait(Meteor.subscribe('Tweets', Meteor.user().username));
+        if (!this.ready()) {
+            this.render();
+        } else {
+            this.render('promptprofile');
+        }
+    
 });
 
 Router.route('/book/:_id/chapter/:chapterid', function () {

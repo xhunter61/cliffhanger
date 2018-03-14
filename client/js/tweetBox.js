@@ -66,6 +66,8 @@ Template.tweetBox.events({
             Session.set('numChars', 0);
             Meteor.call('insertTweet', tweet, title, chaptertitle, visibility);
         }
+        var shadowdiv= document.getElementById('shadow');
+        shadowdiv.style.display='none';
     }
 });
 
