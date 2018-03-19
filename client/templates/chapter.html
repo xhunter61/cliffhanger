@@ -65,37 +65,47 @@
 
 			
 			
-			{{#if isEditMode}}
+			
 			
 			<div class="card" style="width=1250ch;height:100ch;margin-top:10px;margin-bottom:10px;">
+			{{#if isEditMode}}
 			  <div class="card-header" style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
 				<div class="form-group" id="titleeditdiv" style="">
 				  <input type="text" id="titleedit" class="form-control" style="margin-bottom:0px;margin-left:10px;margin-right:10px;width:98%;font-size:36px;border-bottom:1px dotted rgba(255,255,255, 0.84);padding-bottom:15px;" value="{{this.chaptertitle}}" >
 
 				</div>
 			  </div>
-			  <div class="card-body">
-				<textarea class="form-control" id="messageedit" value="{{this.message}}" rows="30" style="color:#000;display:inline"></textarea>
-			  </div>
-			</div>
-			
-
-			
-			{{else}}
-			<div class="card" style="width=1250ch;height:100ch;margin-top:10px;margin-bottom:10px;">
+			  {{else}}
 			  <div class="card-header" style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
 				<div class="form-group" id="titleeditdiv" style="">
 			  		<input type="text" id="titleedit" class="form-control" style="margin-bottom:0px;margin-left:10px;margin-right:10px;width:98%;font-size:36px;pointer-events:none;border-bottom:1px dotted rgba(255,255,255, 0.84);padding-bottom:15px;" value="{{this.chaptertitle}}" disabled>
 				</div>
 				<!---<h1 style="margin-left:1rem;">{{this.chaptertitle}}</h1>-->
 			  </div>
+			  {{/if}}
+			  <div class="card-body" style="height:90%;">
+				<!--<textarea class="form-control" id="messageedit" value="{{this.message}}" rows="30" style="color:#000;display:inline"></textarea>-->
+				<div id="chapterquill" style="color:#000;">
+			
+				</div>
+			  </div>
+			</div>
+			
+			
+			
+			
+			<!-- <div class="card" style="width=1250ch;height:100ch;margin-top:10px;margin-bottom:10px;">
+			  
 			  <div class="card-body">
 				<textarea class="form-control" id="messageedit" value="{{this.message}}" rows="30" style="color:#000;display:inline;pointer-events:none;border-bottom:1px dotted rgba(255,255,255, 0.84);resize:none;" disabled></textarea>
-				<!--<h4 class="card-title">{{this.message}}</h4>-->
+				<h4 class="card-title">{{this.message}}</h4>
+				<div id="chapterquill" style="color:#000;height:400px;">
+			
+				</div>
 			  </div>
 			</div>
 
-			{{/if}}
+			{{/if}}-->
 			
 			
 			{{#each bookEntity}}

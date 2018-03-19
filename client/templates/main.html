@@ -209,10 +209,10 @@ $('#togglebutton-mobile').prop('checked',false);
     // if the target of the click isn't the container nor a descendant of the container
 	if(document.getElementById('tweetbox')!=null){
     if (!$container.is(e.target) && $container.has(e.target).length === 0 && !$writebutton.is(e.target) && $writebutton.has(e.target).length===0) {
-        var div= document.getElementById('tweetbox');
-		div.style.display='none';
-		var shadowdiv= document.getElementById('shadow');
-		shadowdiv.style.display='none';
+        //var div= document.getElementById('tweetbox');
+		//div.style.display='none';
+		//var shadowdiv= document.getElementById('shadow');
+		//shadowdiv.style.display='none';
 		//console.log("click outside of div");
     }
 	}

@@ -1,5 +1,6 @@
 globalDep = new Tracker.Dependency();
-
+import Quill from 'quill';
+var chapterquill;
 Template.chapter.helpers({
   'tweetMessage': function() {
     return Tweets.find({}, { sort: {timestamp: -1}, limit: 10 });
@@ -200,6 +201,7 @@ Template.chapter.helpers({
 var ismybook= Booklist.find({_id:Router.current().params._id,user:Meteor.user().username}, { sort: {timestamp: -1}, limit: 50 }).count();
      localStorage.setItem('EditMode','0');
      Session.setPersistent('EditMode',0);
+     Session.set('chapterchanged',true);
     if(ismybook>0){
         EditMode=false;
         return true;   
@@ -209,6 +211,22 @@ var ismybook= Booklist.find({_id:Router.current().params._id,user:Meteor.user().
     }
      
   },
+    'isfollowing': function () {
+        var isfollowingbook = Bookfollow.find({
+            followername: Meteor.user().username,
+            following: Router.current().params._id
+        }, {
+            sort: {
+                timestamp: -1
+            },
+            limit: 50
+        }).count();
+        if (isfollowingbook == 1) {
+            return 'btn btn-info';
+        } else {
+            return 'btn btn-default';
+        }
+    },
   'followIcon': function(){
     var isfollowingbook= Bookfollow.find({followername:Meteor.user().username, following: Router.current().params._id}, { sort: {timestamp: -1}, limit: 50 }).count();
     if(isfollowingbook==1){
@@ -271,7 +289,8 @@ Template.chapter.onCreated(function() {
             
         }
         
-     $(document).ready(function(){    
+     $(document).ready(function(){
+            
 
      });
         
@@ -284,6 +303,7 @@ Template.chapter.onCreated(function() {
 Template.chapter.onRendered(function() {
      
     this.autorun(function(){
+        
        // console.log("Chapter "+Router.current().params.chapterid+" created")
         
         Meteor.call('updateBookmark',Router.current().params.chapterid);
@@ -320,7 +340,76 @@ Template.chapter.onRendered(function() {
             
         }
         
-        $(document).ready(function(){
+        if(Session.get("chapterchanged")==true){
+                        var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{
+                    'header': 1
+                }, {
+                    'header': 2
+                }], // custom button values
+  [{
+                    'list': 'ordered'
+                }, {
+                    'list': 'bullet'
+                }],
+  [{
+                    'script': 'sub'
+                }, {
+                    'script': 'super'
+                }], // superscript/subscript
+  [{
+                    'indent': '-1'
+                }, {
+                    'indent': '+1'
+                }], // outdent/indent
+  [{
+                    'direction': 'rtl'
+                }], // text direction
+
+  [{
+                    'size': ['small', false, 'large', 'huge']
+                }], // custom dropdown
+  [{
+                    'header': [1, 2, 3, 4, 5, 6, false]
+                }],
+
+  [{
+                    'color': []
+                }, {
+                    'background': []
+                }], // dropdown with defaults from theme
+  [{
+                    'font': []
+                }],
+  [{
+                    'align': []
+                }],
+
+  ['clean'] // remove formatting button
+];
+            chapterquill = new Quill('#chapterquill', {
+                modules: {
+                    toolbar: toolbarOptions
+                },
+                theme: 'bubble'
+            });
+            chapterquill.enable(false);
+            var message=Tweets.findOne({_id:Router.current().params.chapterid}, {});
+            if(message){
+                var delta= message.message;
+                chapterquill.setContents(delta);
+                console.log(delta);
+            }
+        }
+        Session.set("chapterchanged",false);
+        
+        $(document).ready(function () {
+            
+            $('[data-toggle="tooltip"]').tooltip();
+
 
         });
         
@@ -390,9 +479,10 @@ Template.chapter.events({
             localStorage.setItem('EditMode','0');
             Session.setPersistent('EditMode',0);
             var newtitle= $('#titleedit').val();
-            var newmessage=$('#messageedit').val();
+            var newmessage=chapterquill.getContents();
             var visibility = $('#visibilityedit').text();
             console.log(newtitle+ "  "+newmessage);
+            chapterquill.enable(false);
             Meteor.call('EditChapterTitle',Router.current().params.chapterid,newtitle);
             Meteor.call('EditChapterMessage',Router.current().params.chapterid,newmessage);
           Meteor.call('EditChapterVisibility',Router.current().params.chapterid,visibility);  
@@ -400,6 +490,7 @@ Template.chapter.events({
             $('#editbook').addClass('btn-danger');
             $('#editbook').removeClass('btn-default');
             $('[data-toggle="tooltip"]').tooltip();
+            chapterquill.enable(true);
             localStorage.setItem('EditMode','1');
             Session.setPersistent('EditMode',1);
         }

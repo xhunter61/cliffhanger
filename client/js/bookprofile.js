@@ -355,7 +355,7 @@ Template.bookprofile.onRendered(function () {
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
 
-            quill = new Quill('#editor', {
+            quill = new Quill('#editortest', {
                 theme: 'bubble'
             });
             quill.enable(false);

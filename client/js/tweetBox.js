@@ -1,14 +1,29 @@
+import Quill from 'quill';
+var quillbox;
 Template.tweetBox.onRendered(function () {
     // counter starts at 0
     this.counter = new ReactiveVar(0);
     this.numChars = new ReactiveVar(0);
     Session.set('numChars', 0);
+
+
+
+    this.autorun(function () {
+
+        //quillbox = new Quill('#editor', {
+        //  theme: 'snow'
+        //});
+    });
+
 });
 Template.tweetBox.onCreated(function () {
     // counter starts at 0
     this.counter = new ReactiveVar(0);
     this.numChars = new ReactiveVar(0);
     Session.set('numChars', 0);
+    this.autorun(function () {
+
+    });
 });
 
 
@@ -21,14 +36,93 @@ Template.tweetBox.onCreated(function () {
 
 
 Template.tweetBox.events({
-    'input #tweetText': function () {
-        Session.set('numChars', $('#tweetText').val().length);
+    'click #toggleBox': function () {
+        console.log("blub");
+        var div = document.getElementById('tweetbox');
+        var togglebox = document.getElementById('toggleBox');
+        var shadowdiv = document.getElementById('shadow');
+        if (div.style.display == 'inline') {
+            div.style.display = 'none';
+            togglebox.innerHTML='<i class="fa fa-pencil-square-o" aria-hidden="true"></i><strong> Write!</strong>';
+            $('#toggleBox').addClass('btn-info');
+            $('#toggleBox').removeClass('btn-danger');
+            togglebox.style.backgroundColor='#107896';
+            shadowdiv.style.display = 'none'
+            $('#tweetbox').removeClass('tweetboxAnim2');
+        } else {
+            div.style.display = 'inline';
+            shadowdiv.style.display = 'block'
+            togglebox.innerHTML='<i class="fa fa-times" aria-hidden="true" style=""></i><strong> Close</strong>';
+            $('#toggleBox').addClass('btn-danger');
+            $('#toggleBox').removeClass('btn-info');
+            togglebox.style.backgroundColor='#f44336';
+            $('#tweetbox').addClass('tweetboxAnim2');
+            console.log("showing tweetbox")
+        }
+        if (quillbox == null) {
+            var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+  ['blockquote', 'code-block'],
 
+  [{
+                    'header': 1
+                }, {
+                    'header': 2
+                }], // custom button values
+  [{
+                    'list': 'ordered'
+                }, {
+                    'list': 'bullet'
+                }],
+  [{
+                    'script': 'sub'
+                }, {
+                    'script': 'super'
+                }], // superscript/subscript
+  [{
+                    'indent': '-1'
+                }, {
+                    'indent': '+1'
+                }], // outdent/indent
+  [{
+                    'direction': 'rtl'
+                }], // text direction
+
+  [{
+                    'size': ['small', false, 'large', 'huge']
+                }], // custom dropdown
+  [{
+                    'header': [1, 2, 3, 4, 5, 6, false]
+                }],
+
+  [{
+                    'color': []
+                }, {
+                    'background': []
+                }], // dropdown with defaults from theme
+  [{
+                    'font': []
+                }],
+  [{
+                    'align': []
+                }],
+
+  ['clean'] // remove formatting button
+];
+
+
+
+
+            quillbox = new Quill('#editor', {
+                modules: {
+                    toolbar: toolbarOptions
+                },
+                theme: 'snow'
+            });
+        }
     },
-
-
     'click #tweetbutton': function () {
-        var tweet = $('#tweetText').val();
+        var tweet = quillbox.getContents();
         $('#tweetText').val("");
         $('#tweetbox').css('display', 'none');
         if ($('#newbookcheck').is(':checked')) {
@@ -64,10 +158,16 @@ Template.tweetBox.events({
             console.log($('#visibility').text());
             $('#chaptertitle').val("");
             Session.set('numChars', 0);
+            console.log(quillbox.getLength());
             Meteor.call('insertTweet', tweet, title, chaptertitle, visibility);
         }
-        var shadowdiv= document.getElementById('shadow');
-        shadowdiv.style.display='none';
+        var shadowdiv = document.getElementById('shadow');
+        shadowdiv.style.display = 'none';
+    },
+    'input .ql-editor': function () {
+        Session.set('numChars', quillbox.getLength() - 1);
+        console.log(quillbox.getLength() - 1);
+
     }
 });
 
@@ -75,6 +175,7 @@ Template.tweetBox.helpers({
     charCount: function () {
 
         return 25000 - Session.get('numChars');
+
     },
 
     charClass: function () {
@@ -89,7 +190,7 @@ Template.tweetBox.helpers({
 
     disableButton: function () {
 
-        if (Session.get('numChars') <= 0 || Session.get('numChars') > 25000 || !Meteor.user()) {
+        if (Session.get('numChars') <= 1 || Session.get('numChars') > 25000 || !Meteor.user()) {
             return 'disabled'
         }
     },

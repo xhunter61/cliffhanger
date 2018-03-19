@@ -52,8 +52,10 @@
 
   
   <textarea class="form-control" id="summaryBook" placeholder="Summary" rows="5" style="color:#000;display:none"></textarea>
-        <textarea class="form-control" id="tweetText" placeholder="Tell your story" rows="17" style="color:#000"></textarea>
-
+        <textarea class="form-control" id="tweetText" placeholder="Tell your story" rows="17" style="color:#000;display:none"></textarea>
+		<div id="editor" style="color:#000;height:400px;">
+			
+		</div>
         <!-- Character count & button -->
         <div class="pull-right btnGroup">
           <strong class="{{charClass}}">{{charCount}}</strong>
@@ -119,20 +121,7 @@
 		
 		$.material.init();
 		
-		$("#toggleBox").click(function(){
-		var div= document.getElementById('tweetbox');
-		var shadowdiv= document.getElementById('shadow');
-		if(div.style.display=='inline'){
-			div.style.display='none';
-			shadowdiv.style.display='none'
-			$('#tweetbox').removeClass('tweetboxAnim2');
-		}else{
-			div.style.display='inline';
-			shadowdiv.style.display='block'
-			$('#tweetbox').addClass('tweetboxAnim2');
-			console.log("showing tweetbox")
-		}
-		});
+    
 		});
 		
 		$('#newbookcheck').change(function() {
