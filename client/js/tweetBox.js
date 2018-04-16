@@ -125,6 +125,11 @@ Template.tweetBox.events({
         var tweet = quillbox.getContents();
         $('#tweetText').val("");
         $('#tweetbox').css('display', 'none');
+        var togglebox = document.getElementById('toggleBox');
+        togglebox.innerHTML='<i class="fa fa-pencil-square-o" aria-hidden="true"></i><strong> Write!</strong>';
+        $('#toggleBox').addClass('btn-info');
+        $('#toggleBox').removeClass('btn-danger');
+        togglebox.style.backgroundColor='#107896';
         if ($('#newbookcheck').is(':checked')) {
             var booktitle = $('#booktitle').val();
             $('#booktitle').val("");
