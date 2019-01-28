@@ -11,5 +11,5 @@ Cliffhanger is a web app for people to read and write books. These consist of sh
 
 ## Images
 
-![Main Menu] (https://raw.githubusercontent.com/xhunter61/cliffhanger/master/cliff1.png)
+![Main Menu](https://raw.githubusercontent.com/xhunter61/cliffhanger/master/cliff1.png)
 
