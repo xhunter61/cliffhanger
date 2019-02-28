@@ -9,10 +9,11 @@
 	</div>-->
 	<div style="margin-left:5px">
 		{{#if isRoot}}
+		{{! ROOT}}
 		
 		{{else}}
 		<a href="/book/{{bookID}}/chapter/{{chapterID2}}" style="text-decoration:none;" id="{{this_id}}">
-			<div class="panel panel-default promptshadow" style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;" id="booksummary" data-type="textarea">
+			<div class="panel panel-default promptshadow" style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;box-shadow:none;" id="booksummary" data-type="textarea">
 				{{chapterNumber}}. {{chapterTitle}}
 					
 				<div style="float:right;text-align:right">
@@ -40,7 +41,7 @@
 		<!--<h5 style="margin-left:3px"><a href="/book/{{bookID}}/chapter/{{chapterID2}}" class="chapterlink" id="{{this_id}}">{{chapterNumber}}. {{chapterTitle}}</a></h5>-->
 		{{/if}}
 	{{#each sub_chapter}}
-		{{> tree butterid=this._id margin=MarginGetter}}		
+		{{> tree butterid=this._id margin=this.margin}}		
 	{{/each}}
 	</div>
 

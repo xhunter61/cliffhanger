@@ -1,6 +1,6 @@
 Template.tree.helpers({
     'sub_chapter': function(){
-        console.log(Butterfly.find({parent:this.butterid}).count());
+        //console.log(Butterfly.find({parent:this.butterid}).count());
         return Butterfly.find({parent:this.butterid});
     },
  'bookEntity': function() {
@@ -38,8 +38,11 @@ Template.tree.helpers({
   },
   'MarginGetter': function(){
         //console.log(this.margin);
-        var newmargin =(this.margin+3);
-        return newmargin;
+        var margintext =this.margin+3+" px";
+        console.log(this.margin);
+        console.log(this.butterid);
+        console.log(margintext);
+        return margintext;
     },
   'MarginforNext': function(){
         //console.log(this.margin+3);
@@ -91,6 +94,7 @@ Template.tree.helpers({
      if(chapternumber){
          if(chapternumber.chapternumber==0){
              return true;
+             console.log(true);
          }else{
           return false;   
          }

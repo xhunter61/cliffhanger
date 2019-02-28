@@ -27,7 +27,12 @@ a,a:hover,a:focus{
 }
 
 .promptshadow:hover{
-   box-shadow:  0 0 6px rgba(0, 0, 0, 1)
+   /*box-shadow:  0 0 6px rgba(0, 0, 0, 1) !important;*/
+   background-image: linear-gradient(to right, #4EC9FF ,#0083EA) !important;
+}
+
+.chapteractive{
+    background-image: linear-gradient(to right, #4EC9FF ,#0083EA) !important;
 }
 
 .preview{
@@ -89,8 +94,13 @@ a,a:hover,a:focus{
 }
 
 body {
- background: linear-gradient(#107896,#109693) fixed;   
+background: linear-gradient(#107896,#109693) fixed;
+ background-image: url(/bg.svg);
+    background-attachment: fixed;
+    background-size:cover;
 }
+
+
 
 html { 
   overflow-y: scroll; 

@@ -150,6 +150,8 @@ Template.chapter.helpers({
   },
    'isButterfly': function() {
     if(Butterfly.find({tweetid: Router.current().params.chapterid}, { sort: {timestamp: -1}, limit: 10 }).count()==1){
+        console.log(true);
+        Session.set('showButterBox',true);
         return true;        
     }else{      
         return false;

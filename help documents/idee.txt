@@ -24,3 +24,6 @@ evtl kapitel anzahl limitierung um verschieden große contests zu haben.
 
 -------------------------------------------------------------------------
 dashboard so aufbauen, dass die bücher in einer liste angezeigt werden. enthält 2 buttons um diese verändern oder zu löschen. verändern ruft eine neue seite auf: /dashboard/books/_id. vorm rendern gucken ob das buch einem gehört. dort kann das bild, der titel, summary und genre verändert werden.
+
+-----------------------------------------------------
+qr code ähnliches system einführen. vlt in form eines buches mit mehreren punkten mit unterschiedlicher farbe. dient als link zum buch

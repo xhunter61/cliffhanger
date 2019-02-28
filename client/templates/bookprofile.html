@@ -57,7 +57,7 @@
 			
 			
 			<div class="col-sm-6">
-			<div class="panel panel-default " style="background:transparent;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
+			<div class="panel panel-default " style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;" id="booksummary" data-type="textarea">
 			{{#if isButterfly}}
 			
 			<!--<div class="panel-group" style="overflow-y:auto;max-height:100ch">
@@ -81,7 +81,7 @@
 			
 			{{#each bookChapters}}
 			<a href="/book/{{#each bookEntity}}{{this._id}}{{/each}}/chapter/{{this._id}}" style="text-decoration:none;">
-				<div class="panel panel-default promptshadow" style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;" id="booksummary" data-type="textarea">
+				<div class="panel panel-default promptshadow" style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;box-shadow:none;" id="booksummary" data-type="textarea">
 					{{this.chapternumber}}. {{this.chaptertitle}}
 					
 					<div style="float:right;text-align:right">

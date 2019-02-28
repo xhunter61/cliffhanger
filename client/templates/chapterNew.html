@@ -1,0 +1,232 @@
+<template name="chapterNew">
+
+  <div class="tweetfeed-container-nomargin">
+    <div class="" style="padding-top:0px;">
+      <div class="">
+        
+		{{#each bookEntity}}
+			
+			<div class="col-sm- col-sm-3" style= "padding-left:0px; padding-right:0px;"> 
+			<div class="card" style="width: 25%;word-wrap: break-word;margin-bottom:20px;margin-top:0px;background-color: #1B314F;height:100vh;position:fixed;box-shadow:none; -webkit-box-shadow:none">
+			{{#each bookChapters}}
+			<a href="/book/{{#each bookEntity}}{{this._id}}{{/each}}/chapternew/{{this._id}}" style="text-decoration:none;">
+				<div class="panel panel-default promptshadow" style="background:#1B314F;color: #F3F4F5;width=1250ch;padding:5px;font-size:15px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;box-shadow:none;margin-left:0px;" id="{{this._id}}" data-type="textarea">
+					{{this.chapternumber}}. {{this.chaptertitle}}
+					
+					<div style="float:right;text-align:right;">
+					<label style=" font-size: 9px;">{{getTime this.timestamp}} ago by {{this.user}}</label></div>
+				</div>
+			</a>		
+			{{/each}}
+			</div>
+			
+			{{#each chapterEntity}}
+			<!--{{#if isEditMode}}
+					  <button class="btn dropdown-toggle" type="button" id="visibilityedit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#ffffff" >{{{this.visibility}}}</button>
+					  <div class="dropdown-menu" aria-labelledby="buttonMenu1" style="left: 15px">
+						<a class="dropdown-item" href="#" id="publiclistingedit">Public</a>
+						<a class="dropdown-item" href="#" id="followerlistingedit">Follower</a>
+						<a class="dropdown-item" href="#" id="onlymelistingedit">Unlisted</a>
+					  </div>
+			{{else}}
+				<button class="btn dropdown-toggle" type="button" id="visibilityedit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="" disabled>{{{this.visibility}}}</button>
+			{{/if}}-->
+			{{/each}}
+			</div>
+			{{/each}}
+			
+			<div class="col-sm-6" style="background-color:#2E425D;padding-left:0px;padding-right:0px;">
+			<a name="message"></a>
+			{{#each chapterEntity}}
+
+			
+			
+			
+			
+			<div class="card" style="width=1250ch;height:100ch;margin-top:0px;margin-bottom:10px;box-shadow:none; -webkit-box-shadow:none">
+			{{#if isEditMode}}
+			  <div class="card-header" style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
+			  {{#each bookEntity}}
+			  <img class="card-img-top" id="bookcover" src="{{this.cover}}" alt="Card image cap" width="446" height="612" style="width:100%">
+			  {{/each}}
+				<div class="form-group" id="titleeditdiv" style="">
+				  <input type="text" id="titleedit" class="form-control" style="margin-bottom:0px;margin-left:10px;margin-right:10px;width:98%;font-size:36px;border-bottom:1px dotted rgba(255,255,255, 0.84);padding-bottom:15px;" value="{{this.chaptertitle}}" >
+
+				</div>
+			  </div>
+			  {{else}}
+			  <div class="card-header" style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
+			  	  {{#each bookEntity}}
+			  <img class="card-img-top" id="bookcover" src="{{this.cover}}" alt="Card image cap" width="446" height="612" style="width:100%">
+			  {{/each}}
+				<div class="form-group" id="titleeditdiv" style="">
+			  		<input type="text" id="titleedit" class="form-control" style="margin-bottom:0px;margin-left:10px;margin-right:10px;width:98%;font-size:36px;pointer-events:none;border-bottom:1px dotted rgba(255,255,255, 0.84);padding-bottom:15px;" value="{{this.chaptertitle}}" disabled>
+				</div>
+				<!---<h1 style="margin-left:1rem;">{{this.chaptertitle}}</h1>-->
+			  </div>
+			  {{/if}}
+			  <div class="card-body" style="height:90%;">
+				<!--<textarea class="form-control" id="messageedit" value="{{this.message}}" rows="30" style="color:#000;display:inline"></textarea>-->
+				<div id="chapterquill" style="color:#000;">
+			
+				</div>
+			  </div>
+			</div>
+
+			
+			
+			
+			
+			
+			<!-- <div class="card" style="width=1250ch;height:100ch;margin-top:10px;margin-bottom:10px;">
+			  
+			  <div class="card-body">
+				<textarea class="form-control" id="messageedit" value="{{this.message}}" rows="30" style="color:#000;display:inline;pointer-events:none;border-bottom:1px dotted rgba(255,255,255, 0.84);resize:none;" disabled></textarea>
+				<h4 class="card-title">{{this.message}}</h4>
+				<div id="chapterquill" style="color:#000;height:400px;">
+			
+				</div>
+			  </div>
+			</div>
+
+			{{/if}}-->
+			
+			
+			{{#each bookEntity}}
+			<div class="row">
+
+			<div class="col-xs-5" align="right">
+				<a href= "/book/{{this._id}}/chapter/{{chapterIDbefore}}#message" style="display:{{hasPreviousChapter}}" > <i class="fa fa-caret-left fa-3x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
+			</div>
+			
+			<div class="col-xs-2" align="center">
+					<a href="/book/{{this._id}}" ><i class="fa fa-list fa-3x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
+			</div>
+			
+			<div class="col-xs-5" align="left">
+				<a href= "/book/{{this._id}}/chapter/{{chapterIDafter}}#message" style="display:{{hasNextChapter}}" ><i class="fa fa-caret-right fa-3x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
+			</div>
+				
+			</div>
+			{{/each}}
+			{{/each}}
+			<div class="row text-center">
+			{{#if isButterfly}}
+
+
+			  <div class="container-fluid" style="padding-left:0px;padding-right:0px;display:{{showButterBox}}" id="butterinput"><div class="panel panel-default tweetbox-mobile " style="z-index:9999998;box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.8);margin-top:-600px" >
+        <div class="panel-body" style="width:100%">
+        <!-- Text box for tweet content -->
+		<div class="form-group" id="divchaptertitle-butter" style="display:inline">
+		<label style="color:#000">Chapter Title:</label>
+  <input type="text" id="chaptertitle-butter" class="form-control" style="margin-bottom:15px">
+  </div>
+        <textarea class="form-control" id="tweetText-butter" placeholder="Tell your story" rows="20" style="color:#000"></textarea>
+
+        <!-- Character count & button -->
+        <div class="pull-left btnGroup">
+          <strong class="{{charClass}}">{{charCount}}</strong>
+          {{#if currentUser}}
+           
+          {{else}}
+        <button class="btn btn-info pull-right"  type="button" disabled>Please Log In</button>
+          {{/if}}
+        </div>
+
+      </div>
+  
+  </div></div>
+ 
+			<button class="btn btn-info btn-tweetbox " id="butterbutton" type="button" style="color:#107896;margin-left: 0px;margin-top: 9px;z-index:9999999;background-color:#f2f3f4;" align="center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+			<strong>Continue the story!</strong></button>
+
+			{{/if}}
+			</div>
+			</div>
+			<div class="col-sm-3" style="" >
+			<div class="form-group label-floating is-empty">
+			<div class="input-group" id="divcomment" style="">
+			<label class="control-label" style="color:#f2f3f4">Comment</label>
+			<input type="text" id="comment" class="form-control" style="margin-bottom:15px;color:#f2f3f4;">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-fab btn-fab-mini" style="background-color:transparent;border:1px solid #fff" id="commentbtn">
+				<i class="fa fa-paper-plane" aria-hidden="true" style="color:#f2f3f4;margin-right:3px;"></i>
+
+				</button>
+			</span>
+			</div>
+			</div>
+			<br>
+			
+			
+			<div class="panel-group" style="overflow-y:auto;max-height:100ch">
+			<div class="panel panel-default">
+				<div class="panel-heading" style="background-color:#f2f3f4;color:#107896">
+					<h4 class="panel-title nohoverlink">
+						<a data-toggle="collapse" href="#collapse1" class="nohoverlink"><i class="fa fa-comments" aria-hidden="true" style="color:#107896"></i> <strong style="color:#107896;">Comments: {{getCommentCount}}</strong></a>
+					</h4>
+					<hr style="width: 100%;margin-top: 0px;margin-bottom: 0px;background-color:#f2f3f4">
+				</div>
+				
+		<div id="collapse1" class="panel-collapse collapse">
+		{{#each getComments}}
+			<div class="panel-body"><a href="/profile/{{this.user}}"><label style="cursor:pointer"> {{this.user}} </label></a>
+			<label style="float:right">{{getTime this.time}} ago</label>
+			<div class="panel panel-default" style="background:#f2f3f4;padding:5px;">
+				<h6 style="margin:5px;color:#000"><strong>{{this.comment}}</strong></h6>
+			</div></div>
+			
+			
+			
+			{{/each}}
+			</div>
+			</div>
+			</div>
+			</div>
+        
+      </div>
+    </div>
+	
+	<script type="text/javascript">
+	
+				$('#publiclistingedit').click(function(){
+		
+			$('#visibilityedit').html("Public");
+		});
+		
+		$('#followerlistingedit').click(function(){
+		
+			$('#visibilityedit').html("Follower only");
+		});
+		
+		$('#onlymelistingedit').click(function(){
+			console.log("test");
+			$('#visibilityedit').html("Unlisted");
+		});
+	
+	$(document).ready(function(){
+	
+//	$("#bookcover").click(function(){
+	//	alert("test");
+	//});
+	
+	$(".promptshadow").on("click", function(){
+	  // $(".promptshadow").parent().find(".chapteractive").removeClass("chapteractive");
+	   console.log("chapter click");
+	   //$(this).addClass("chapteractive");
+	});
+	
+
+	
+	
+  var windowWidth = $(window).width();
+  if(windowWidth <= 1024) //for iPad & smaller devices
+     $('#cardbody').removeClass('in')
+});
+	
+	
+	
+	</script>
+	
+  </div>
+</template>

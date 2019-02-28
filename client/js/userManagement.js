@@ -163,6 +163,18 @@ Router.route('/book/:_id/chapter/:chapterid', function () {
     }
 });
 
+Router.route('/book/:_id/chapternew/:chapterid', function () {
+    var params = this.params; // { _id: "5" }
+    var id = params._id; // "5"
+    var chapterid = params.chapterid;
+    this.wait(Meteor.subscribe('Books'));
+    if (!this.ready()) {
+
+    } else {
+        this.render('chapterNew');
+    }
+});
+
 
 AdminConfig = {
     name: 'My App',
