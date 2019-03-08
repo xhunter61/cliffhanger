@@ -146,12 +146,13 @@ Template.tweetBox.events({
             $('#summaryBook').val("");
             console.log(booksummary);
             var selected = $('[name="myMultiselect"]').find("option:selected");
+            var visibility = $('#visibility').text();
             var genres = [];
             selected.each(function () {
                 genres.push($(this).val());
             });
             console.log(genres);
-            Meteor.call('insertBook', booktitle, coverlink, tweet, chaptertitle, butterfly, booksummary, genres, "");
+            Meteor.call('insertBook', booktitle, coverlink, tweet, chaptertitle, butterfly, booksummary, genres, "", visibility);
             genres = [];
             $('[name="myMultiselect"]').multiselect('deselectAll', false);
             $('[name="myMultiselect"]').multiselect('updateButtonText');

@@ -282,6 +282,7 @@ Template.chapterNew.onCreated(function() {
     this.subscribe('bookfollow', Meteor.user().username);
     this.subscribe('followingBooks', Meteor.user().username);
     this.subscribe('Comments', Meteor.user().username);
+      this.subscribe('Ratings', Meteor.user().username);
       this.subscribe('Books');
     Meteor.call('updateBookmark',Router.current().params.chapterid);
     this.autorun(function(){

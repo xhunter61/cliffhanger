@@ -25,7 +25,7 @@ Meteor.methods({
     }
   },
   
-  insertBook: function(title,cover,tweet,chaptertitle, butter, booksummary,genres,prompt) {
+  insertBook: function(title,cover,tweet,chaptertitle, butter, booksummary,genres,prompt,visibility) {
     if (Meteor.user()) {
         console.log(title+ "  "+ booksummary);
         if(booksummary == ""){
@@ -57,7 +57,8 @@ Meteor.methods({
         bookid: bookid,
         chapternumber: 1,  
         user: Meteor.user().username,
-        timestamp: new Date()
+        timestamp: new Date(),
+        visibility:visibility
            }); 
         }
         
