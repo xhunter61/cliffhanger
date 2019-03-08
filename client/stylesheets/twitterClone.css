@@ -28,10 +28,11 @@ a,a:hover,a:focus{
 
 .promptshadow:hover{
    /*box-shadow:  0 0 6px rgba(0, 0, 0, 1) !important;*/
-   background-image: linear-gradient(to right, #4EC9FF ,#0083EA) !important;
+   color: #F3F4F5 !important;
 }
 
 .chapteractive{
+    color: white !important;
     background-image: linear-gradient(to right, #4EC9FF ,#0083EA) !important;
 }
 

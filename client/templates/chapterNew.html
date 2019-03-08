@@ -10,7 +10,7 @@
 			<div class="card" style="width: 25%;word-wrap: break-word;margin-bottom:20px;margin-top:0px;background-color: #1B314F;height:100vh;position:fixed;box-shadow:none; -webkit-box-shadow:none">
 			{{#each bookChapters}}
 			<a href="/book/{{#each bookEntity}}{{this._id}}{{/each}}/chapternew/{{this._id}}" style="text-decoration:none;">
-				<div class="panel panel-default promptshadow" style="background:#1B314F;color: #F3F4F5;width=1250ch;padding:5px;font-size:15px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;box-shadow:none;margin-left:0px;" id="{{this._id}}" data-type="textarea">
+				<div class="panel panel-default promptshadow" style="background:#1B314F;color: #c2c3c4;width=1250ch;padding:5px;font-size:15px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;box-shadow:none;margin-left:0px;" id="{{this._id}}" data-type="textarea">
 					{{this.chapternumber}}. {{this.chaptertitle}}
 					
 					<div style="float:right;text-align:right;">
@@ -119,7 +119,7 @@
 			<div class="row">
 
 			<div class="col-xs-5" align="right">
-				<a href= "/book/{{this._id}}/chapter/{{chapterIDbefore}}#message" style="display:{{hasPreviousChapter}}" > <i class="fa fa-caret-left fa-3x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
+				<a href= "/book/{{this._id}}/chapternew/{{chapterIDbefore}}#message" style="display:{{hasPreviousChapter}}" > <i class="fa fa-caret-left fa-3x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
 			</div>
 			
 			<div class="col-xs-2" align="center">
@@ -127,7 +127,7 @@
 			</div>
 			
 			<div class="col-xs-5" align="left">
-				<a href= "/book/{{this._id}}/chapter/{{chapterIDafter}}#message" style="display:{{hasNextChapter}}" ><i class="fa fa-caret-right fa-3x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
+				<a href= "/book/{{this._id}}/chapternew/{{chapterIDafter}}#message" style="display:{{hasNextChapter}}" ><i class="fa fa-caret-right fa-3x" aria-hidden="true" style="color:#f2f3f4;"></i></a>
 			</div>
 				
 			</div>
