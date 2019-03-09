@@ -204,6 +204,8 @@ var ismybook= Booklist.find({_id:Router.current().params._id,user:Meteor.user().
      localStorage.setItem('EditMode','0');
      Session.setPersistent('EditMode',0);
      Session.set('chapterchanged',true);
+     
+     
     if(ismybook>0){
         EditMode=false;
         return true;   
@@ -232,9 +234,9 @@ var ismybook= Booklist.find({_id:Router.current().params._id,user:Meteor.user().
   'followIcon': function(){
     var isfollowingbook= Bookfollow.find({followername:Meteor.user().username, following: Router.current().params._id}, { sort: {timestamp: -1}, limit: 50 }).count();
     if(isfollowingbook==1){
-        return '<i class="fa fa-check-circle" aria-hidden="false"></i>';
+        return '<i class="fa fa-check-circle fa-2x" aria-hidden="false" title="following"></i>';
     }else{
-        return '<i class="fa fa-bookmark" aria-hidden="true"></i>';
+        return '<i class="fa fa-bookmark fa-2x" aria-hidden="true" title="follow"></i>';
     }
   },
   'isfollowingText': function(){
@@ -415,6 +417,7 @@ Template.chapterNew.onRendered(function() {
                 },
                 theme: 'bubble'
             });
+            console.log("chapterchanged");
             chapterquill.enable(false);
             var message=Tweets.findOne({_id:Router.current().params.chapterid}, {});
             if(message){
@@ -493,6 +496,7 @@ Template.chapterNew.events({
     },
     'click #editbook': function(event){
         if(Session.get('EditMode')==1){
+            console.log("editmode disabled");
             $('#editbook').addClass('btn-default');
             $('#editbook').removeClass('btn-danger');
             localStorage.setItem('EditMode','0');
@@ -506,6 +510,7 @@ Template.chapterNew.events({
             Meteor.call('EditChapterMessage',Router.current().params.chapterid,newmessage);
           Meteor.call('EditChapterVisibility',Router.current().params.chapterid,visibility);  
         }else{
+            console.log("editmode enabled");
             $('#editbook').addClass('btn-danger');
             $('#editbook').removeClass('btn-default');
             $('[data-toggle="tooltip"]').tooltip();

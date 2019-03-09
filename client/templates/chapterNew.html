@@ -47,10 +47,25 @@
 			
 			<div class="card" style="width=1250ch;height:100ch;margin-top:0px;margin-bottom:10px;box-shadow:none; -webkit-box-shadow:none">
 			{{#if isEditMode}}
-			  <div class="card-header" style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
+			  <div class="card-header bookoverlay" style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
 			  {{#each bookEntity}}
 			  <div class="preview">
-			  <img class="card-img-top" id="bookcover" src="{{this.cover}}" alt="Card image cap" width="446" height="612" style="width:100%">
+				<button type="button" class="btn btn-danger" id="editbook" style="margin:5px;position:absolute;right:0;bottom: 0;z-index: 10;padding-right: 10px;padding-left: 10px;padding-bottom: 0px;"><i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+				  </button>
+
+				  <div class="row" style="position:absolute;width:100%;bottom:0;">
+				  <div class="col-sm-3" style="color: white;bottom:0;z-index:10;border-right:2px solid #2E425D;padding-left: 25px;">{{this.booktitle}}</div>
+				  <div class="col-sm-3" style="color: white;bottom:0;z-index:10;border-right:2px solid #2E425D">{{this.user}} </div>
+				  <div class="col-sm-3" style="color: white;bottom:0;z-index:10;border-right:2px solid #2E425D">{{this.viewercount}}</div>
+				  <div class="col-sm-3" style="color: white;bottom:0;z-index:10;">			
+				  {{#if hasRating}}
+					{{> rating value=this.rating disabled=true }}
+				{{else}}
+					{{> rating value=this.rating disabled=false }}
+				{{/if}}</div>
+				  
+				  </div>
+			  <img class="card-img-top" id="bookcover" src="{{this.cover}}" alt="Card image cap" width="446" height="100" style="width:100%">
 			  </div>
 			  {{/each}}
 				<div class="form-group" id="titleeditdiv" style="">
@@ -63,6 +78,10 @@
 			  	  {{#each bookEntity}}
 				  
 				  <div class="preview">
+				  {{#if isMyBook}} <button type="button" class="btn btn-default" id="editbook" style="margin:5px;position:absolute;right:0;color:white;bottom: 0;z-index: 10;padding-right: 10px;padding-left: 10px;padding-bottom: 0px;"><i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+				  </button>
+				  {{else}} <button type="button" class="{{isfollowing}}" id="follow" style="margin:5px;position:absolute;right:0;color:white;bottom: 0;z-index: 10;padding-right: 10px;padding-left: 10px;padding-bottom: 0px;">{{{followIcon}}} </button>
+				  {{/if}}
 				  <div class="row" style="position:absolute;width:100%;bottom:0;">
 				  <div class="col-sm-3" style="color: white;bottom:0;z-index:10;border-right:2px solid #2E425D;padding-left: 25px;">{{this.booktitle}}</div>
 				  <div class="col-sm-3" style="color: white;bottom:0;z-index:10;border-right:2px solid #2E425D">{{this.user}} </div>
