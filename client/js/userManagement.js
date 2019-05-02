@@ -139,6 +139,16 @@ Router.route('/book/:_id', function () {
     this.render('bookprofile');
 });
 
+
+Router.route('/booknew/:_id', function () {
+    var params = this.params; // { _id: "5" }
+    var id = params._id; // "5"
+
+        this.render('bookprofilenew');
+    
+    
+});
+
 Router.route('/prompt/:_id', function () {
     var params = this.params; // { _id: "5" }
     var id = params._id; // "5"

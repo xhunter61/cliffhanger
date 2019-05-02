@@ -104,12 +104,19 @@ background: linear-gradient(#107896,#109693) fixed;
  background-image: url(/bg.svg);
     background-attachment: fixed;
     background-size:cover;
+    font-family: 'Work Sans', sans-serif;
 }
 
 
 
 html { 
   overflow-y: scroll; 
+}
+
+.card-noshadow{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-radius: 0px;
 }
 
 
