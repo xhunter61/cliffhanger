@@ -4,7 +4,7 @@ Cliffhanger is a web app for people to read and write books. These consist of sh
 
 ## Live Demo
 
-*https://cliffhangerme.herokuapp.com/
+[Live Demo](https://cliffhangerme.herokuapp.com/)
 
 
 ## Built With
