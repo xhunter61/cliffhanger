@@ -32,6 +32,16 @@ Meteor.methods({
         _id:chapterid},{$inc: {newcomments: 1}}  
         );
         
+    },'removeComment': function(commentID, chapterid){
+        if(Comments.find({_id:commentID,user:Meteor.user().username}).count()>0){
+            
+        
+            Tweets.update({
+            _id:chapterid},{$inc: {newcomments: -1}}  
+            );
+            Comments.remove({_id:commentID, user:Meteor.user().username});
+        }
+        
     },
     'EditChapterTitle': function(chapterid, newtitle){
         console.log("changing title");

@@ -259,7 +259,15 @@ var ismybook= Booklist.find({_id:Router.current().params._id,user:Meteor.user().
     }else{
         return false;   
     }
-   }
+   },
+    'isMyComment': function(user){
+        if(user== Meteor.user().username){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
     
 });
 
@@ -500,7 +508,7 @@ Template.chapter.events({
         
     },
     'click .btn': function(event){
-        if(event.currentTarget.id!='editbook' && event.currentTarget.id!='follow' && event.currentTarget.id!='delbook'&& event.currentTarget.id!='edittitlebtn' && event.currentTarget.id!='commentbtn' && event.currentTarget.id!='visibilityedit'){
+        if(event.currentTarget.id!='editbook' && event.currentTarget.id!='follow' && event.currentTarget.id!='delbook'&& event.currentTarget.id!='edittitlebtn' && event.currentTarget.id!='commentbtn' && event.currentTarget.id!='visibilityedit' && event.currentTarget.id!='deleteComment'){
             alert("You are about to delete Chapter "+event.currentTarget.id);
             Meteor.call('removeChapter',event.currentTarget.id);
             localStorage.setItem('EditMode','1');
@@ -523,6 +531,11 @@ Template.chapter.events({
     'click #publiclistingedit': function(event){
         console.log("test");
         $('#visibilityedit').html("Public");
+    },
+    'click .deleteCommentBtn': function(event){
+        console.log("delete comment: ");
+        console.log(event.currentTarget.parentNode.parentNode.id);
+        Meteor.call('removeComment', event.currentTarget.parentNode.parentNode.id, Router.current().params.chapterid);
     }
     
     

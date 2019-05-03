@@ -176,7 +176,7 @@
 			
 			
 			<div class="panel-group" style="overflow-y:auto;max-height:100ch;overflow-x:auto;max-width:450px;">
-			<div class="panel panel-default" style="background-color: #EDF0F2;">
+			<div class="panel panel-default" style="background-color: #EDF0F2;border-radius:0px;">
 				<div class="panel-heading" style="background-color:#f2f3f4;color:#107896">
 					<h4 class="panel-title nohoverlink">
 						<a data-toggle="collapse" href="#collapse1" class="nohoverlink"><i class="fa fa-comments" aria-hidden="true" style="color:#107896"></i> <strong style="color:#107896;">Comments: {{getCommentCount}}</strong></a>
@@ -186,8 +186,17 @@
 				
 		<div id="collapse1" class="panel-collapse collapse">
 		{{#each getComments}}
-			<div class="card card-noshadow" style="margin:5px;width:97%;"><a href="/profile/{{this.user}}"><label style="cursor:pointer; color:#232f34; font-size: 15px;margin-left: 15px;margin-top: 15px;"> {{this.user}} &mdash; {{getTime this.time}} ago</label></a>
-			
+			<div class="card card-noshadow" style="margin:5px;width:97%;"  id="{{this._id}}"><a href="/profile/{{this.user}}"><label style="cursor:pointer; color:#232f34; font-size: 15px;margin-left: 15px;margin-top: 15px;"> {{this.user}} &mdash; {{getTime this.time}} ago</label></a>
+				
+				{{#if isMyComment this.user}}
+				<span class="input-group-btn" style="float:right;margin-right:30%;margin-top:15px;">
+					<button type="button" class="btn btn-sm deleteCommentBtn btn-fab-sm" style="background-color:transparent;border:1px solid #fff;padding:0px" id="deleteComment">
+					<i class="fa fa-trash-o fa-lg" aria-hidden="true" style="color:#232f34;margin-right:3px;"></i>
+
+				</button>
+				</span>
+				{{/if}}
+				
 			<div class="card-body" style="background:#ffffff;padding:15px;">
 				<label style="cursor:pointer; color:#232f34; font-size: 17px;"> {{this.comment}}</label>
 			</div></div>
