@@ -1,48 +1,29 @@
 
 <template name="tree">
-			<!--<div class="panel-heading" style="background-color:#107896;color:#f2f3f4">
-					<h4 class="panel-title nohoverlink">
-						<a data-toggle="collapse" href="#collapse1" class="nohoverlink"><i class="fa fa-comments" aria-hidden="true" style="color:#f2f3f4"></i> {{chapterTitle}}</a>
-					</h4>
-			</div>-->
-	<!--<div class="panel-body"><h5><a href="/book/{{#each bookEntity}}{{this._id}}{{/each}}/chapter/{{chapterID}}" class="chapterlink" id="{{chapterID}}">{{chapterTitle}}</a></h5>
-	</div>-->
+
 	<div style="margin-left:5px">
 		{{#if isRoot}}
 		{{! ROOT}}
-		
+				{{#each sub_chapter}}
+			{{> tree butterid=this._id margin=this.margin}}		
+		{{/each}}
 		{{else}}
-		<a href="/book/{{bookID}}/chapter/{{chapterID2}}" style="text-decoration:none;" id="{{this_id}}">
-			<div class="panel panel-default promptshadow" style="background:#fff;width=1250ch;padding:5px;font-size:21px;font-weight:normal;margin-bottom:1px;border-radius:0px;border-bottom:0px;box-shadow:none;" id="booksummary" data-type="textarea">
-				{{chapterNumber}}. {{chapterTitle}}
-					
-				<div style="float:right;text-align:right">
-				<label style="">{{getTime chapterTime}} ago by {{chapterAuthor}}</label></div>
-			</div>
-		</a>
-		
-		
-		
-	<!--	<div class="row">
-	     <div class="col-xs-1">
-			<h5 align="right" style="margin-left:3px">{{chapterNumber}}.</h5>
-			</div>
-			<div class="col-xs-9">
-			<h5><a href="/book/{{bookID}}/chapter/{{chapterID2}}" class="chapterlink" id="{{this_id}}">{{chapterTitle}}</a></h5>
-		 </div>
-		 <div class="col-xs-2">
-		 <h6><a href="/profile/{{chapterAuthor}}">{{chapterAuthor}}</a>  {{getTime chapterTime}} ago </h6>
-		 </div>
-
-	    </div> -->
-		
-		
-		
-		<!--<h5 style="margin-left:3px"><a href="/book/{{bookID}}/chapter/{{chapterID2}}" class="chapterlink" id="{{this_id}}">{{chapterNumber}}. {{chapterTitle}}</a></h5>-->
+		<div id="collapse1" class="panel-collapse collapse in {{parent}}">
+		<div class="card card-noshadow" style="margin:5px;width:97%;"  id="{{this._id}}"><a href="/book/{{bookID}}/chapter/{{chapterID2}}"><label style="cursor:pointer; color:#232f34; font-size: 15px;margin-left: 15px;margin-top: 15px;"> {{chapterNumber}}. {{chapterTitle}}&mdash; {{getTime chapterTime}} ago by {{chapterAuthor}}</label></a>
+				<span class="input-group-btn" style="float:right;margin-right:0%;margin-top:8px;border-left:1px;padding-left:4px;">
+					<a data-toggle="collapse" href="#{{chapterID2}}" class="btn getSubChapterbtn nohoverlink" style="background-color:transparent;border:1px solid #fff;padding:0px" id="getSubChapterbtn">
+					<i class="fa fa-chevron-right fa-2x" aria-hidden="true" style="color:#232f34;margin-right:3px;"></i>
+				</a>
+				</span>
+		</div>
+		<div id="{{chapterID2}}" class="panel-collapse collapse ">
+		{{#each sub_chapter}}
+			{{> tree butterid=this._id margin=this.margin}}		
+		{{/each}}
+		</div>
+		</div>
 		{{/if}}
-	{{#each sub_chapter}}
-		{{> tree butterid=this._id margin=this.margin}}		
-	{{/each}}
+
 	</div>
 
 

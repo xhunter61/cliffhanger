@@ -1,6 +1,6 @@
 Template.tree.helpers({
     'sub_chapter': function(){
-        //console.log(Butterfly.find({parent:this.butterid}).count());
+        console.log(Butterfly.find({parent:this.butterid}).count() + ' '+ this.butterid);
         return Butterfly.find({parent:this.butterid});
     },
  'bookEntity': function() {
@@ -32,6 +32,16 @@ Template.tree.helpers({
    if(chapter){
        //console.log(chapter._id);
        return chapter.tweetid;
+   }else{
+    return "";   
+   }
+  },
+  'parent': function(){
+      
+   var chapter= Butterfly.findOne({parent: this.butterid});
+   if(chapter){
+       //console.log(chapter._id);
+       return chapter.parent;
    }else{
     return "";   
    }
@@ -121,4 +131,50 @@ Template.tree.helpers({
    }
   }   
 
+});
+
+
+Template.tree.onCreated(function () {
+    if (Meteor.user()) {
+        this.subscribe('tweets', Meteor.user().username);
+        this.subscribe('ownTweets', Meteor.user().username);
+        this.subscribe('bookChapters', Router.current().params._id);
+        this.subscribe('bookfollow', Meteor.user().username);
+        this.subscribe('followingBooks', Meteor.user().username);
+        this.subscribe('bookChaptersAll');
+        this.subscribe('hiddenTweets', Meteor.user().username);
+        this.subscribe('Books');
+        this.subscribe('Ratings');
+        this.subscribe('Butterfly');
+        Meteor.call('markasNotified', Router.current().params._id);
+        Meteor.call('incViewNumber', Router.current().params._id);
+        this.autorun(function () {
+            var rootChapter = Butterfly.findOne({
+                bookid: Router.current().params._id,
+                chapternumber: 0
+            });
+            if (rootChapter) {
+                Session.set("bookRoot", rootChapter._id);
+                //console.log(Session.get("bookRoot"));
+            }
+        });
+
+
+    }
+});
+
+Template.tree.onRendered(function () {
+
+    this.autorun(function () {
+        var rootChapter = Butterfly.findOne({
+            bookid: Router.current().params._id,
+            chapternumber: 0
+        });
+        if (rootChapter) {
+            Session.set("bookRoot", rootChapter._id);
+            //console.log(Session.get("bookRoot"),);
+        }
+
+
+    });
 });

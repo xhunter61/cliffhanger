@@ -271,7 +271,7 @@ Template.bookprofile.events({
 
     },
     'click .btn': function (event) {
-        if (event.currentTarget.id != 'editbook' && event.currentTarget.id != 'follow' && event.currentTarget.id != 'delbook' && event.currentTarget.id != 'edittitlebtn') {
+        if (event.currentTarget.id != 'editbook' && event.currentTarget.id != 'follow' && event.currentTarget.id != 'delbook' && event.currentTarget.id != 'edittitlebtn' && event.currentTarget.id!='getSubChapterbtn') {
             alert("You are about to delete Chapter " + event.currentTarget.id);
             Meteor.call('removeChapter', event.currentTarget.id);
             localStorage.setItem('EditMode', '1');
